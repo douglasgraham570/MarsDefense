@@ -15,8 +15,6 @@ public class Enemy : MonoBehaviour
 
     private int waypointIndex = 0;
 
-    Rigidbody2D rgb;
-
     //Start is called before first frame
     void Start() {
 
@@ -52,5 +50,18 @@ public class Enemy : MonoBehaviour
         Vector3 translation = direction.normalized;
 
         transform.Translate(translation* Time.deltaTime * speed);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //if it's a bullet, both it and the bullet are destroyed
+
+        //Debug.Log("Triggered!");
+
+        if (collision.gameObject.tag == "Bullet")
+        { 
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
     }
 }

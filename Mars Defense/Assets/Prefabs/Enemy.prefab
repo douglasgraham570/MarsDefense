@@ -93,10 +93,10 @@ GameObject:
   - component: {fileID: 6326328661607854286}
   - component: {fileID: 6326328661607854287}
   - component: {fileID: -4625532175348152792}
-  - component: {fileID: -8322221286967780195}
+  - component: {fileID: -164887543505391679}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 6326328661607854281}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 6326328660795203939}
   m_Father: {fileID: 0}
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339af2809cff14f7daf5ba0485037f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.04
+  speed: 0.7
   waypointRadius: 0.05
 --- !u!58 &-4625532175348152792
 CircleCollider2D:
@@ -140,13 +140,13 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.09
---- !u!50 &-8322221286967780195
+--- !u!50 &-164887543505391679
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

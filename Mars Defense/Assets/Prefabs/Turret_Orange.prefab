@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 920159119280815221}
   m_Layer: 0
   m_Name: Turret_Orange
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 5214672817578529013}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.81, y: -0.084, z: 3.7964778}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 5214672818807707044}
   - {fileID: 5214672817346268851}
@@ -183,6 +183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6945309564369008398, guid: 1185b4284a349474883732eb44b7cc5f, type: 3}
+  strength: 100
+  timeBetweenFire: 1
 --- !u!58 &920159119280815221
 CircleCollider2D:
   m_ObjectHideFlags: 0
