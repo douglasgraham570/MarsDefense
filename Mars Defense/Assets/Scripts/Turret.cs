@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Turret : MonoBehaviour
-{
-    //get reference to bullet
+{ 
     public GameObject bulletPrefab;
 
     //strength of firing
     public float strength = 5.0f;
+
+    public string enemyTag = "Enemy";
 
     //adjusts firing spawn parameters
     public float up = 0f;
@@ -20,6 +22,9 @@ public class Turret : MonoBehaviour
     //time between firing
     public float timeBetweenFire = 1f;
 
+    //time to update target
+    public float targetUpdateTime = .5f;
+
     //references to the turret tops at different angles
     Transform turretSE;
     Transform turretSW;
@@ -29,37 +34,68 @@ public class Turret : MonoBehaviour
     private float countdown = 0;
 
     //initialize queue for enemy targets  
-    private Queue<GameObject> targets = new Queue<GameObject>();
+    //private Queue<GameObject> targets = new Queue<GameObject>();
 
-    private GameObject currentTarget;
+    private GameObject currentTarget = null;
     private Vector3 bulletSpawn;
+    private float range;
+
 
     private void Start()
     {
+        //get reference to each potential turret head
         turretSE = transform.GetChild(1);
         turretSW = transform.GetChild(0);
         turretNW = transform.GetChild(3);
         turretNE = transform.GetChild(2);
 
+        //get turret radius from collider
+        range = GetComponent<CircleCollider2D>().radius;
+             
+        //Repeatedly update the target enemy
+        InvokeRepeating("UpdateTarget", 0f, targetUpdateTime);
+
+    }
+     
+    void UpdateTarget()
+    {
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject nearestTarget = null;
+        float minDistance = Mathf.Infinity;
+
+        //find the target with the lowest distance to the turret
+        foreach (var target in targets)
+        {
+            float dist = Vector3.Distance(target.transform.position, transform.position);
+
+            if (target != null && dist <= minDistance)
+            {
+                minDistance = dist;
+                nearestTarget = target;
+            } 
+        }
+
+        //if there is a target in the range, make it the current target
+        if (nearestTarget != null && minDistance < range)
+        {
+            currentTarget = nearestTarget;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if enemy has already exited, remove it
-        if (targets.Count != 0)
+        //if  no enemies, do nothing
+        if (currentTarget == null)
         {
-            Debug.Log("Peeking at unequal queues");
-            if (targets.Peek().name.Equals("empty"))
-            {
-                targets.Dequeue();
-            }
+            return;
         }
 
         //fire if recharged and there is an enemy
-        if (countdown <= 0 && (targets.Count != 0)) 
+        if (countdown <= 0) 
         {
             Fire();
+            currentTarget = null;
             countdown = timeBetweenFire;
         }
 
@@ -67,45 +103,8 @@ public class Turret : MonoBehaviour
 
     }
 
-    //enemy enters the turret's radius
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //enqueue enemy to targets
-
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            targets.Enqueue(collision.gameObject);
-            return;
-        }
-     
-    }
-
-    //enemy exits the turret's radius or is destroyed
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy")) {
-            //take enemy out from targets by briefly converting to array
-            GameObject[] targetsArray = targets.ToArray();
-
-            //set the exiting gameObject to null in the targets array so it can be ignored later
-            for (int i = 0; i < targetsArray.Length; i++)
-            {
-                if (targetsArray.GetValue(i).Equals(collision.gameObject))
-                {
-                    targetsArray.SetValue(new GameObject("empty"), i);
-                }
-            }
-
-            //reconstruct targets from the array
-            targets = new Queue<GameObject>(targetsArray);
-        }
-    }
-
-
     void Fire()
     {
-        //get reference to first target
-        currentTarget = targets.Peek();
         Transform targetTransform = currentTarget.transform;
 
         //get vector from turrent to enemy
@@ -121,8 +120,6 @@ public class Turret : MonoBehaviour
     //given an enemy direction, rotates the turret to face that direction and instantiates bullet
     void RotateAndShoot(Vector3 enemyDir)
     {
-        //get force to be applied to bullet
-        Vector3 bulletForce = enemyDir * strength;
 
         //rotate turret and get intended bullet position
         if (enemyDir.x < 0 && enemyDir.y < 0)
@@ -150,6 +147,11 @@ public class Turret : MonoBehaviour
             bulletSpawn = transform.position + new Vector3(right, up, 0);
         }
 
+        Vector3 shootingDir = currentTarget.transform.position - bulletSpawn;
+
+        //get force to be applied to bullet
+        Vector3 bulletForce = shootingDir * strength;
+
         //shoot target
         var bulletClone = Instantiate(bulletPrefab, bulletSpawn, Quaternion.identity);
         bulletClone.GetComponent<Rigidbody2D>().AddForce(bulletForce);
@@ -172,4 +174,5 @@ public class Turret : MonoBehaviour
         var invisibleRenderer3 = hide3.gameObject.GetComponent<SpriteRenderer>();
         invisibleRenderer3.enabled = false;
     }
+
 }

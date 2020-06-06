@@ -346,7 +346,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da45c67ecb374bcf941e4cdc024ac92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangeCollider: {fileID: 5489119593026803649}
   bulletPrefab: {fileID: 6945309564369008398, guid: 1185b4284a349474883732eb44b7cc5f, type: 3}
+  range: 5
   strength: 100
   up: 0.75
   down: 0.2
@@ -368,7 +370,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 6
+  m_Radius: 5
 --- !u!1 &627820844980184320
 GameObject:
   m_ObjectHideFlags: 0
