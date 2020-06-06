@@ -10,6 +10,13 @@ public class Turret : MonoBehaviour
     //strength of firing
     public float strength = 5.0f;
 
+    //adjusts firing spawn parameters
+    public float up = 0f;
+    public float down = 0f;
+    public float left = 0f;
+    public float right = 0f;
+
+
     //time between firing
     public float timeBetweenFire = 1f;
 
@@ -25,7 +32,7 @@ public class Turret : MonoBehaviour
     private Queue<GameObject> targets = new Queue<GameObject>();
 
     private GameObject currentTarget;
-
+    private Vector3 bulletSpawn;
 
     private void Start()
     {
@@ -64,34 +71,39 @@ public class Turret : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //enqueue enemy to targets
-        targets.Enqueue(collision.gameObject);
-        return;
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            targets.Enqueue(collision.gameObject);
+            return;
+        }
+     
     }
 
-    //enemy exits the turret's radius
+    //enemy exits the turret's radius or is destroyed
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //take enemy out from targets by briefly converting to array
-        GameObject[] targetsArray = targets.ToArray();
+        if (collision.gameObject.CompareTag("Enemy")) {
+            //take enemy out from targets by briefly converting to array
+            GameObject[] targetsArray = targets.ToArray();
 
-        //set the exiting gameObject to null in the targets array so it can be ignored later
-        for (int i = 0; i < targetsArray.Length; i++)
-        {
-            if (targetsArray.GetValue(i).Equals(collision.gameObject))
+            //set the exiting gameObject to null in the targets array so it can be ignored later
+            for (int i = 0; i < targetsArray.Length; i++)
             {
-                targetsArray.SetValue(new GameObject("empty"), i);
+                if (targetsArray.GetValue(i).Equals(collision.gameObject))
+                {
+                    targetsArray.SetValue(new GameObject("empty"), i);
+                }
             }
-        }
 
-        //reconstruct targets from the array
-        targets = new Queue<GameObject>(targetsArray);
+            //reconstruct targets from the array
+            targets = new Queue<GameObject>(targetsArray);
+        }
     }
 
 
     void Fire()
     {
-        Debug.Log("Firing!");
-
         //get reference to first target
         currentTarget = targets.Peek();
         Transform targetTransform = currentTarget.transform;
@@ -102,48 +114,45 @@ public class Turret : MonoBehaviour
         //normalize vector
         turretToEnemy.Normalize();
 
-        //set turret head to roughly match bullet's direction
-        TurretRotate(turretToEnemy);
-
-        //force to be applied to bullet
-        Vector3 bulletForce = turretToEnemy * strength;
-
-        Debug.Log("Bullet force: " + bulletForce.ToString());
-
-        //shoot target
-        var bulletClone = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        bulletClone.GetComponent<Rigidbody2D>().AddForce(bulletForce);
-
-        //Debug.Log("Firing!");
+        //rotate turret's head and instantiate bullet accordingly
+        RotateAndShoot(turretToEnemy);
     }
 
-    //given an enemy direction, rotates the turret to face that direction
-    void TurretRotate(Vector3 enemyDir)
+    //given an enemy direction, rotates the turret to face that direction and instantiates bullet
+    void RotateAndShoot(Vector3 enemyDir)
     {
-        //figure out the quadrant the turrent should point in, then rotate it
+        //get force to be applied to bullet
+        Vector3 bulletForce = enemyDir * strength;
+
+        //rotate turret and get intended bullet position
         if (enemyDir.x < 0 && enemyDir.y < 0)
         {
-            //face southwest
+            //facing southwest
             MakeHeadVisible(turretSW, turretSE, turretNW, turretNE);
+            bulletSpawn = transform.position + new Vector3(left, down, 0);
 
         } else if (enemyDir.x < 0)
         {
-            //face northweswt
+            //facing northwest
             MakeHeadVisible(turretNW, turretSW, turretSE, turretNE);
-
+            bulletSpawn = transform.position + new Vector3(left, up, 0);
         }
         else if (enemyDir.y < 0)
         {
-            //face southeast
+            //facing southeast
             MakeHeadVisible(turretSE, turretNW, turretNE, turretSW);
-
+            bulletSpawn = transform.position + new Vector3(right, down, 0);
         }
         else
         {
-            //face northeast
+            //facing northeast
             MakeHeadVisible(turretNE, turretNW, turretSW, turretSE);
-
+            bulletSpawn = transform.position + new Vector3(right, up, 0);
         }
+
+        //shoot target
+        var bulletClone = Instantiate(bulletPrefab, bulletSpawn, Quaternion.identity);
+        bulletClone.GetComponent<Rigidbody2D>().AddForce(bulletForce);
     }
 
     //given 4 turret heads, enables visibility for first head and disables it for rest 

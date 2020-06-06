@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6326328660795203939}
   - component: {fileID: 6326328660795203936}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemySprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 6326328661607854287}
   - component: {fileID: -4625532175348152792}
   - component: {fileID: -164887543505391679}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339af2809cff14f7daf5ba0485037f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.7
+  speed: 0.5
   waypointRadius: 0.05
 --- !u!58 &-4625532175348152792
 CircleCollider2D:
