@@ -4,12 +4,26 @@ using UnityEngine;
 using UnityEditor;
 
 public class Turret : MonoBehaviour
-{ 
-    public GameObject bulletPrefab;
+{
+     [Header("Attributes")]
+
+    //time between firing
+    public float timeBetweenFire = 1f;
+
+    //time to update target
+    public float targetUpdateTime = .5f;
+
+    public bool hasGuidedMissiles = false;
 
     //strength of firing
     public float strength = 5.0f;
 
+    [Header("Prefabs")]
+
+    public GameObject bulletPrefab;
+    public GameObject missilePrefab;
+
+    [Header("Settings")]
     public string enemyTag = "Enemy";
 
     //adjusts firing spawn parameters
@@ -17,13 +31,6 @@ public class Turret : MonoBehaviour
     public float down = 0f;
     public float left = 0f;
     public float right = 0f;
-
-
-    //time between firing
-    public float timeBetweenFire = 1f;
-
-    //time to update target
-    public float targetUpdateTime = .5f;
 
     //references to the turret tops at different angles
     Transform turretSE;
@@ -152,9 +159,35 @@ public class Turret : MonoBehaviour
         //get force to be applied to bullet
         Vector3 bulletForce = shootingDir * strength;
 
-        //shoot target
-        var bulletClone = Instantiate(bulletPrefab, bulletSpawn, Quaternion.identity);
-        bulletClone.GetComponent<Rigidbody2D>().AddForce(bulletForce);
+        //instantiate guided missile if upgraded
+        if (hasGuidedMissiles)
+        {
+            var missileClone = Instantiate(missilePrefab, bulletSpawn, Quaternion.identity);
+
+            //get reference to missile's script
+			GuidedMissile missile = missileClone.GetComponent<GuidedMissile>();
+
+			if (missile != null)
+			{
+				missile.Seek(currentTarget.transform);
+			}
+            
+        }
+        else
+        {
+            //otherwise instantiate bullet
+            var bulletClone = Instantiate(bulletPrefab, bulletSpawn, Quaternion.identity);
+            bulletClone.GetComponent<Rigidbody2D>().AddForce(bulletForce);
+
+            //get reference to bullet's script
+            Bullet bullet = bulletClone.GetComponent<Bullet>();
+
+            if (bullet != null)
+            {
+                bullet.Seek(currentTarget.transform);
+            }
+
+        }
     }
 
     //given 4 turret heads, enables visibility for first head and disables it for rest 

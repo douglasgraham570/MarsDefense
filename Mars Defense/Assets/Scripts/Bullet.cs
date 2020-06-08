@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    Rigidbody2D rgb;
-    //public float bulletForce = 10f;
-    
-    void Start()
-    {
-        //get reference to rigidbody
-        //rgb = GetComponent<Rigidbody2D>();
+    Transform target;
 
-        //add forward force to the rigidbody
-        //rgb.AddForce(new Vector2(0, bulletForce));
+    public void Seek(Transform _target)
+    {
+        target = _target;
+
     }
 
+    private void Update()
+    {
+        //destroy bullet if no target
+        if (target == null)
+        {
+            Destroy(gameObject);
+        }
+
+    }
 }
