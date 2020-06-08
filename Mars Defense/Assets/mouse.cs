@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretBuilder : MonoBehaviour
+public class mouse : MonoBehaviour
 {
     public GameObject towerMoverPrefab;
-    
+
     private void OnMouseDown()
     {
-        Debug.Log("Clicked turret");
+        Debug.Log("On Mouse Down");
+        Instantiate(towerMoverPrefab, transform);
     }
 }
