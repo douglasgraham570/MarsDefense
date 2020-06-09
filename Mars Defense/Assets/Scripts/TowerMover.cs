@@ -14,6 +14,13 @@ public class TowerMover : MonoBehaviour
     private GameObject towerLocation;
     private bool placeable = true;
     private string tile;
+    private SpriteRenderer[] spriteRenderers;
+
+    private void Start()
+    {
+        //get the sprite renderers for the base and all of the children
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -39,6 +46,25 @@ public class TowerMover : MonoBehaviour
             placeable = false;
         }
         Debug.Log(tile);
+
+
+        //display sprite renderers as red if not placeable
+        if (placeable)
+        {
+            for (int i = 0; i < spriteRenderers.Length; i++)
+            {
+                 spriteRenderers[i].color = new Color(1, 1, 1, .5f);
+            }
+
+        }
+        else
+        {
+            for(int i = 0; i < spriteRenderers.Length; i++)
+            {
+                spriteRenderers[i].color = new Color(1,0,0,.5f);
+            }
+
+        }
     }
 
     private void OnMouseDown()
