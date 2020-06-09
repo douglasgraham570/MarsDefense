@@ -7,6 +7,7 @@ public class TowerMover : MonoBehaviour
 {
     public GameObject towerPrefab;
     public Tilemap surface;
+    public Grid grid;
     private GameObject towerLocation;
     private bool placeable = true;
    
@@ -16,13 +17,17 @@ public class TowerMover : MonoBehaviour
     {
         //update tower's transform
         Vector3 pointerPosition = -Vector2.one;
-        pointerPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition+ new Vector3(0, 0, 1));
+        pointerPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 1));
         transform.position = pointerPosition;
+        Vector3 pos = transform.position;
+        pos.z = 0;
+        transform.position = pos;
 
-        Vector3Int cellPos = surface.LocalToCell(transform.position);
-        string tileName = "Bob ross";
-        Debug.Log(tileName);
-
+        
+        Vector3Int cellPosition = grid.WorldToCell(pos);
+        TileBase tile = surface.GetTile(cellPosition);
+        
+        Debug.Log(tile.name);
     }
 
     private void OnMouseDown()

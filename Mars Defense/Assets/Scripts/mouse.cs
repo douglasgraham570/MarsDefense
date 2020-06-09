@@ -6,7 +6,7 @@ public class mouse : MonoBehaviour
 {
     public GameObject towerMoverPrefab;
 
-    private void OnMouseDown()
+    void OnMouseDown()
     {
         Debug.Log("On Mouse Down");
         Instantiate(towerMoverPrefab, transform);
