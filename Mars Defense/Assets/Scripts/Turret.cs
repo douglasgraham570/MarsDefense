@@ -48,8 +48,10 @@ public class Turret : MonoBehaviour
     private float range;
 
 
-    private void Start()
+    private void Awake()
     {
+        Debug.Log("Awaking Turret");
+
         //get reference to each potential turret head
         turretSE = transform.GetChild(1);
         turretSW = transform.GetChild(0);
@@ -61,7 +63,7 @@ public class Turret : MonoBehaviour
              
         //Repeatedly update the target enemy
         InvokeRepeating("UpdateTarget", 0f, targetUpdateTime);
-
+        
     }
      
     void UpdateTarget()
