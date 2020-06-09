@@ -8,9 +8,12 @@ public class TowerMover : MonoBehaviour
     public GameObject towerPrefab;
     public Tilemap surface;
     public Grid grid;
+    public List<string> validTiles = new List<string>();
+    public List<string> nonvalidTiles = new List<string>();
+
     private GameObject towerLocation;
     private bool placeable = true;
-   
+    private string tile;
 
     // Update is called once per frame
     void Update()
@@ -23,11 +26,19 @@ public class TowerMover : MonoBehaviour
         pos.z = 0;
         transform.position = pos;
 
-        
+        //determine if tower is placeable on this cell
         Vector3Int cellPosition = grid.WorldToCell(pos);
-        TileBase tile = surface.GetTile(cellPosition);
-        
-        Debug.Log(tile.name);
+        TileBase tileBase = surface.GetTile(cellPosition);
+        tile = tileBase.name;
+
+        if (validTiles.Contains(tile))
+        {
+            placeable = true;
+        } else
+        {
+            placeable = false;
+        }
+        Debug.Log(tile);
     }
 
     private void OnMouseDown()
@@ -51,7 +62,7 @@ public class TowerMover : MonoBehaviour
         }
         else
         {
-            Debug.Log("Cannot place tower here");
+            //Debug.Log("Cannot place tower here");
         }
     }
 }

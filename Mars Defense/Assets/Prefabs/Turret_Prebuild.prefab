@@ -375,6 +375,12 @@ MonoBehaviour:
   towerPrefab: {fileID: 627820844747930433, guid: da37baa924b2145068063c6b516df727, type: 3}
   surface: {fileID: 2575698627198631454, guid: 12064183fa8614723887dcf9eed58b93, type: 3}
   grid: {fileID: 6764973655744968542, guid: 4b878deca914941409b58b33f682609c, type: 3}
+  validTiles:
+  - Medium Orange
+  nonvalidTiles:
+  - Light Orange
+  - Dark Orange
+  - End
 --- !u!1 &627820844980184320
 GameObject:
   m_ObjectHideFlags: 0
