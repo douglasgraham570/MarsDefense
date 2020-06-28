@@ -969,7 +969,7 @@ GameObject:
   - component: {fileID: 398235168}
   m_Layer: 5
   m_Name: Lives
-  m_TagString: Untagged
+  m_TagString: Lives
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1701,7 +1701,7 @@ GameObject:
   - component: {fileID: 685547296}
   m_Layer: 5
   m_Name: Money
-  m_TagString: Untagged
+  m_TagString: Currency
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3252,6 +3252,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1350631125}
   - component: {fileID: 1350631126}
+  - component: {fileID: 1350631127}
+  - component: {fileID: 1350631128}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -3290,6 +3292,32 @@ MonoBehaviour:
   spawnNum: 0
   timeBetweenEnemies: 0.25
   timeBetweenLevels: 5
+--- !u!114 &1350631127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350631124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97f10d51c0f8a46eab6e627b2c9b56b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livesUGUI: {fileID: 398235168}
+--- !u!114 &1350631128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350631124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1101109d8b660471c96e599a92c67e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currencyUGUI: {fileID: 685547296}
 --- !u!1 &1370846181
 GameObject:
   m_ObjectHideFlags: 0

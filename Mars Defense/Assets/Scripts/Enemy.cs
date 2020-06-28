@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,6 +11,13 @@ public class Enemy : MonoBehaviour
 	public static Transform[] waypoints;
     public float waypointRadius = 0.1f;
 
+    public int moneyOnDeath = 1;
+    public int livesTaken = 1;
+
+    //reference to currency GUI
+    private static TextMeshProUGUI currencyText;
+
+
     //current waypoint enemy is heading towards
     private Transform currentWaypoint;
 
@@ -17,6 +25,14 @@ public class Enemy : MonoBehaviour
 
     //Start is called before first frame
     void Start() {
+
+        //get reference to the currency UGUI
+        GameObject currencyObj = GameObject.FindGameObjectWithTag("Currency");
+        currencyText = currencyObj.GetComponent<TextMeshProUGUI>();
+
+        //get reference to the currency UGUI
+        GameObject livesObj = GameObject.FindGameObjectWithTag("Lives");
+        currencyText = livesObj.GetComponent<TextMeshProUGUI>();
 
         waypoints = Waypoints.waypoints;
 
@@ -35,9 +51,19 @@ public class Enemy : MonoBehaviour
         {
             waypointIndex += 1;
 
-            //destroy if we're at last waypoint
+            //destroy and take lives if we're at last waypoint
             if (waypointIndex >= waypoints.Length - 1)
             {
+                //game over if the lives go to zero or lower
+                if (Lives.lives - livesTaken <= 0)
+                {
+                    Lives.lives = 0;
+                }
+                else
+                {
+                    Lives.lives -= livesTaken;
+                }
+
                 Destroy(gameObject);
                 return;
             }
@@ -54,12 +80,9 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if it's a bullet, both it and the bullet are destroyed
-
-        //Debug.Log("Triggered!");
-
         if (collision.gameObject.tag == "Bullet")
-        { 
+        {
+            Currency.money += moneyOnDeath;
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
