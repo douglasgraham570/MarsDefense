@@ -10,6 +10,8 @@ public class TowerMover : MonoBehaviour
     public Grid grid;
     public List<string> validTiles = new List<string>();
     public List<string> nonvalidTiles = new List<string>();
+    public float maxPlacementYVal = 0;
+
 
     private GameObject towerLocation;
     private bool placeable = true;
@@ -47,6 +49,11 @@ public class TowerMover : MonoBehaviour
         }
         Debug.Log(tile);
 
+        //makes sure tower can only be placed below a certain y-value (to avoid overlapping with top panel)
+        if (pointerPosition.y >= maxPlacementYVal)
+        {
+            placeable = false;
+        }
 
         //display sprite renderers as red if not placeable
         if (placeable)
@@ -85,10 +92,6 @@ public class TowerMover : MonoBehaviour
 
             //Destroy the mover temporary object
             Destroy(gameObject);
-        }
-        else
-        {
-            //Debug.Log("Cannot place tower here");
         }
     }
 }
