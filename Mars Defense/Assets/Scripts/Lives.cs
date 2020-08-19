@@ -13,7 +13,7 @@ public class Lives : MonoBehaviour
     //continually update the lives due to enemies making it to HQ, or player making an upgrade/repair
     private void Update()
     {
-        livesUGUI.text = lives.ToString();
+        livesUGUI.text = "LIVES: " + lives.ToString();
     }
 }
 

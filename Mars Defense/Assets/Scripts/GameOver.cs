@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
+    public GameObject gameStartCanvas;
     public GameObject gameOverCanvas;
     public int startingLives = 1;
     public int startingCurrency = 100;
@@ -14,6 +15,17 @@ public class GameOver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //first time playing through
+        if (!PlayerPrefs.HasKey("started"))
+        {
+            gameStartCanvas.SetActive(true);
+            Time.timeScale = 0f;
+        } else
+        {
+            gameStartCanvas.SetActive(false);
+        }
+
+        
         gameOverCanvas.SetActive(false);
 
         //set starting lives and currency
@@ -28,14 +40,22 @@ public class GameOver : MonoBehaviour
         if (Lives.lives == 0)
         {
             gameOverCanvas.SetActive(true);
-            Time.timeScale = 0;
+            Time.timeScale = 0f;
         }
 
         //quits game if escape key is pressed
         if (Input.GetKey("escape")) {
             //Debug.Log("exiting");
             Application.Quit();
+            PlayerPrefs.DeleteAll();
         }
+    }
+
+    public void OnPlay()
+    {
+        gameStartCanvas.SetActive(false);
+        PlayerPrefs.SetInt("started", 1);
+        Time.timeScale = 1f;
     }
 
     //restarts game when 'play again' button pressed
@@ -45,7 +65,9 @@ public class GameOver : MonoBehaviour
         //Lives.lives = startingLives;
         //Currency.money = startingCurrency;
         //gameOverCanvas.SetActive(false);
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
+        Lives.lives = startingLives;
+        Currency.money = startingCurrency;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -54,5 +76,7 @@ public class GameOver : MonoBehaviour
 
         //Debug.Log("exiting");
         Application.Quit();
+        PlayerPrefs.DeleteAll();
     }
+
 }
