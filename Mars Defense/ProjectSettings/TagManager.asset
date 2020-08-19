@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Currency
   - Lives
+  - Manager
   layers:
   - Default
   - TransparentFX

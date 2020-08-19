@@ -990,7 +990,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 584, y: 64.2}
+  m_AnchoredPosition: {x: 584, y: 64.20007}
   m_SizeDelta: {x: 1697.8, y: -130.0354}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &398235168
@@ -1286,7 +1286,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.804417
+  orthographic size: 6.293876
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2239,7 +2239,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 40.1
+  m_Spacing: 32.7
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -2639,7 +2639,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1045991706}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1350631129}
+        m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
+        m_MethodName: OnPlayAgain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1045991706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2818,7 +2830,7 @@ GameObject:
   - component: {fileID: 1086297287}
   - component: {fileID: 1086297286}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Rounds Survived Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3249,7 +3261,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1248090596}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1350631129}
+        m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
+        m_MethodName: OnExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1248090596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3846,9 +3870,10 @@ GameObject:
   - component: {fileID: 1350631126}
   - component: {fileID: 1350631127}
   - component: {fileID: 1350631128}
+  - component: {fileID: 1350631129}
   m_Layer: 0
   m_Name: Manager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3910,6 +3935,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currencyUGUI: {fileID: 685547296}
+--- !u!114 &1350631129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350631124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1025e17823c8f4a3a8aebfce1005f802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverCanvas: {fileID: 1071353060}
 --- !u!1 &1370846181
 GameObject:
   m_ObjectHideFlags: 0
