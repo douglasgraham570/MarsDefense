@@ -3845,7 +3845,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'ROUND: 1'
+  m_text: ROUND 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3919,7 +3919,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 15, z: 0, w: 40.875843}
   m_textInfo:
     textComponent: {fileID: 1306787911}
-    characterCount: 8
+    characterCount: 7
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -4277,7 +4277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStartCanvas: {fileID: 73390426}
   gameOverCanvas: {fileID: 1071353060}
-  startingLives: 1
+  startingLives: 40
   startingCurrency: 100
 --- !u!1 &1370846181
 GameObject:
@@ -6553,21 +6553,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_text
-      value: 'BASIC TURRET
+      value: 'BASIC TURRET: $20
 
 '
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 13
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_fontStyle

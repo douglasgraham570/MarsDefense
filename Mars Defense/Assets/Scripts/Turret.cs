@@ -18,6 +18,9 @@ public class Turret : MonoBehaviour
     //strength of firing
     public float strength = 5.0f;
 
+    //cost
+    public int turretCost = 20;
+
     [Header("Prefabs")]
 
     public GameObject bulletPrefab;
@@ -50,7 +53,8 @@ public class Turret : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Awaking Turret");
+        //Debug.Log("Awaking Turret");
+        Currency.money -= turretCost;
 
         //get reference to each potential turret head
         turretSE = transform.GetChild(1);

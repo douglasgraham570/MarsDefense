@@ -17,7 +17,7 @@ public class TowerStore : MonoBehaviour
 
         tempTransform.position = buttonTransform.position;
 
-        Debug.Log("Instantiating tower");
+        //Debug.Log("Instantiating tower");
         Instantiate(tower1PrebuildPrefab, tempTransform);
         return;
     }

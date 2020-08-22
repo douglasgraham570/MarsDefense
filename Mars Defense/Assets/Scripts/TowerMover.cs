@@ -11,6 +11,7 @@ public class TowerMover : MonoBehaviour
     public List<string> validTiles = new List<string>();
     public List<string> nonvalidTiles = new List<string>();
     public float maxPlacementYVal = 0;
+    public int towerOneCost = 20;
 
 
     private GameObject towerLocation;
@@ -47,7 +48,13 @@ public class TowerMover : MonoBehaviour
         {
             placeable = false;
         }
-        Debug.Log(tile);
+        //Debug.Log(tile);
+
+        //is there enough money to buy the tower?
+        if (Currency.money < towerOneCost)
+        {
+            placeable = false;
+        }
 
         //makes sure tower can only be placed below a certain y-value (to avoid overlapping with top panel)
         if (pointerPosition.y >= maxPlacementYVal)
@@ -74,11 +81,11 @@ public class TowerMover : MonoBehaviour
         }
     }
 
+    //tower is placed
     private void OnMouseDown()
     {
         if (placeable)
         {
-
             towerLocation = new GameObject(towerPrefab.name);
             Transform towerTransform = towerLocation.transform;
             Vector3 towerPosition = towerTransform.position;

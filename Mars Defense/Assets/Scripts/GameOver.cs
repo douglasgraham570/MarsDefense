@@ -9,6 +9,7 @@ public class GameOver : MonoBehaviour
     public GameObject gameOverCanvas;
     public int startingLives = 1;
     public int startingCurrency = 100;
+    
 
     GameObject manager;
 

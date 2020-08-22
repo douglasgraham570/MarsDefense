@@ -8,6 +8,7 @@ public class Currency : MonoBehaviour
     [Header("Initialization")]
     public static int money;
     public TextMeshProUGUI currencyUGUI;
+    public static int towerOneCost;
 
     public static bool Purchase(GameObject towerPrefab)
     {
