@@ -72,6 +72,7 @@ public class GameOver : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    
     //quits application when exit button pressed
     public void OnExit() {
 
