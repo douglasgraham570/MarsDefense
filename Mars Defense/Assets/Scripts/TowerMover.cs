@@ -19,8 +19,14 @@ public class TowerMover : MonoBehaviour
     private string tile;
     private SpriteRenderer[] spriteRenderers;
 
+    Currency currency;
+
     private void Start()
     {
+        GameObject manager = GameObject.Find("Manager");
+        currency = manager.GetComponent<Currency>();
+
+
         //get the sprite renderers for the base and all of the children
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
     }
@@ -51,7 +57,7 @@ public class TowerMover : MonoBehaviour
         //Debug.Log(tile);
 
         //is there enough money to buy the tower?
-        if (Currency.money < towerOneCost)
+        if (currency.money < towerOneCost)
         {
             placeable = false;
         }
@@ -81,7 +87,7 @@ public class TowerMover : MonoBehaviour
         }
     }
 
-    //tower is placed
+    //tower is placed or put back (into menu)
     private void OnMouseDown()
     {
         if (placeable)

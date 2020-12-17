@@ -10,6 +10,7 @@ TagManager:
   - Currency
   - Lives
   - Manager
+  - Button
   layers:
   - Default
   - TransparentFX

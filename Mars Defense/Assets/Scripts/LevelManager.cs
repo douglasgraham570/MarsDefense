@@ -9,13 +9,20 @@ public class GameOver : MonoBehaviour
     public GameObject gameOverCanvas;
     public int startingLives = 1;
     public int startingCurrency = 100;
-    
+
+    Currency currency;
+
+
 
     GameObject manager;
 
     // Start is called before the first frame update
     void Start()
     {
+         //get a reference to the currency script attached to the manager
+        GameObject manager = GameObject.Find("Manager");
+        currency = manager.GetComponent<Currency>();
+
         //first time playing through
         if (!PlayerPrefs.HasKey("started"))
         {
@@ -31,7 +38,7 @@ public class GameOver : MonoBehaviour
 
         //set starting lives and currency
         Lives.lives = startingLives;
-        Currency.money = startingCurrency;
+        currency.money = startingCurrency;
     }
 
     // Update is called once per frame
@@ -68,7 +75,7 @@ public class GameOver : MonoBehaviour
         //gameOverCanvas.SetActive(false);
         Time.timeScale = 1f;
         Lives.lives = startingLives;
-        Currency.money = startingCurrency;
+        currency.money = startingCurrency;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

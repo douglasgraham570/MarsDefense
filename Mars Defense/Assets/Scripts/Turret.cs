@@ -50,11 +50,17 @@ public class Turret : MonoBehaviour
     private Vector3 bulletSpawn;
     private float range;
 
+    Currency currency;
 
     private void Awake()
     {
+
+        GameObject manager = GameObject.Find("Manager");
+        currency = manager.GetComponent<Currency>();
+
+
         //Debug.Log("Awaking Turret");
-        Currency.money -= turretCost;
+        currency.money -= turretCost;
 
         //get reference to each potential turret head
         turretSE = transform.GetChild(1);

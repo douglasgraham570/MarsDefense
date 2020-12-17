@@ -8,15 +8,16 @@ public class Enemy : MonoBehaviour
     //enemy movement speed along path
 	public float speed = 1;
 
-	public static Transform[] waypoints;
+	public Transform[] waypoints;
     public float waypointRadius = 0.1f;
 
     public int moneyOnDeath = 1;
     public int livesTaken = 1;
 
     //reference to currency GUI
-    private static TextMeshProUGUI currencyText;
+    private TextMeshProUGUI currencyText;
 
+    Currency currency;
 
     //current waypoint enemy is heading towards
     private Transform currentWaypoint;
@@ -25,6 +26,9 @@ public class Enemy : MonoBehaviour
 
     //Start is called before first frame
     void Start() {
+
+        GameObject manager = GameObject.Find("Manager");
+        currency = manager.GetComponent<Currency>();
 
         //get reference to the currency UGUI
         GameObject currencyObj = GameObject.FindGameObjectWithTag("Currency");
@@ -82,7 +86,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            Currency.money += moneyOnDeath;
+            currency.money += moneyOnDeath;
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }

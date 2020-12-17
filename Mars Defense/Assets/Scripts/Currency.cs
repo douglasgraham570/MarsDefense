@@ -6,9 +6,12 @@ using TMPro;
 public class Currency : MonoBehaviour
 {
     [Header("Initialization")]
-    public static int money;
     public TextMeshProUGUI currencyUGUI;
-    public static int towerOneCost;
+
+    public int money = 200;
+    public int towerOneCost = 20;
+    public int towerTwoCost = 50;
+    public int towerThreeCost = 90;
 
     public static bool Purchase(GameObject towerPrefab)
     {
