@@ -21,7 +21,9 @@ public class GameOver : MonoBehaviour
     {
          //get a reference to the currency script attached to the manager
         GameObject manager = GameObject.Find("Manager");
+        Debug.Log("is manager null? " + manager.ToString());
         currency = manager.GetComponent<Currency>();
+        Debug.Log("is currency script null? " + currency.ToString());
 
         //first time playing through
         if (!PlayerPrefs.HasKey("started"))

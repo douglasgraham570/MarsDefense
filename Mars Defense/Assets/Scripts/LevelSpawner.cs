@@ -13,27 +13,39 @@ public class LevelSpawner : MonoBehaviour
     public float timeBetweenLevels = 5f;
     private float countdown = 2f;
     private int levelIndex = 0;
+    private bool gameStarted = false;
+
+
+    //tells the script the game has started, and the enemies will now be spawned
+    public void GameStarted()
+    {
+        Debug.Log("spawner knows game started");
+        gameStarted = true;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        //spawn level when countdown reaches 0
-        if (countdown <= 0)
+        if (gameStarted)
         {
-            spawnNum += 1;
+            //spawn level when countdown reaches 0
+            if (countdown <= 0)
+            {
+                spawnNum += 1;
 
-            //spawn the next level
-            SpawnLevel();
+                //spawn the next level
+                SpawnLevel();
 
-            //reset countdown to the time between levels
-            countdown = timeBetweenLevels;
-       
+                //reset countdown to the time between levels
+                countdown = timeBetweenLevels;
+
+            }
+
+
+            //decremet countdown relative to framerate
+            countdown -= Time.deltaTime;
+
         }
-
-
-        //decremet countdown relative to framerate
-        countdown -= Time.deltaTime;
-
     }
 
     //spawns a level
