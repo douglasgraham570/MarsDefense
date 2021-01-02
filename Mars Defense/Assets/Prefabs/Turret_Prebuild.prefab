@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 7475577790461391279}
   m_Layer: 9
   m_Name: Turret_Prebuild
-  m_TagString: Tower
+  m_TagString: Prebuild
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -383,6 +383,7 @@ MonoBehaviour:
   - End
   - Invalid Medium Orange
   maxPlacementYVal: 5
+  towerOneCost: 20
 --- !u!1 &627820844980184320
 GameObject:
   m_ObjectHideFlags: 0

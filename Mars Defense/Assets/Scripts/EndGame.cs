@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
 {
@@ -20,7 +21,16 @@ public class EndGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckIfPressedEscape();
         CheckIfGameOver();
+    }
+
+    private void CheckIfPressedEscape()
+    {
+        if (Input.GetKey("escape"))
+        {
+            EscapeFromGame();
+        }
     }
 
     private void CheckIfGameOver()
@@ -33,6 +43,29 @@ public class EndGame : MonoBehaviour
 
             //freezes time
             Time.timeScale = 0;
+
+            //destroys the turret prebuild if there is one
+            try
+            {
+                GameObject prebuild = GameObject.FindGameObjectWithTag("Prebuild");
+                Destroy(prebuild);
+            }
+            catch (Exception ex)
+            {
+                Debug.Log("Cannot find prebuild. Exception: " + ex.ToString());
+            }
         }
+    }
+
+    public void EscapeFromGame()
+    {
+        Debug.Log("Quitting game");
+        Application.Quit();
+    }
+
+    public void PlayGameAgain()
+    {
+        Debug.Log("Playing Game Again. Loading scene Main");
+        SceneManager.LoadScene("Main");
     }
 }
