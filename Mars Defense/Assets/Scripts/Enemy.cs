@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     private TextMeshProUGUI currencyText;
 
     Currency currency;
+    Lives health;
 
     //current waypoint enemy is heading towards
     private Transform currentWaypoint;
@@ -29,6 +30,7 @@ public class Enemy : MonoBehaviour
 
         GameObject manager = GameObject.Find("Manager");
         currency = manager.GetComponent<Currency>();
+        health = manager.GetComponent<Lives>();
 
         //get reference to the currency UGUI
         GameObject currencyObj = GameObject.FindGameObjectWithTag("Currency");
@@ -59,13 +61,13 @@ public class Enemy : MonoBehaviour
             if (waypointIndex >= waypoints.Length - 1)
             {
                 //game over if the lives go to zero or lower
-                if (Lives.lives - livesTaken <= 0)
+                if (health.lives - livesTaken <= 0)
                 {
-                    Lives.lives = 0;
+                    health.lives = 0;
                 }
                 else
                 {
-                    Lives.lives -= livesTaken;
+                    health.lives -= livesTaken;
                 }
 
                 Destroy(gameObject);

@@ -7,11 +7,11 @@ public class GameOver : MonoBehaviour
 {
     public GameObject gameStartCanvas;
     public GameObject gameOverCanvas;
-    public int startingLives = 1;
+    public int startingLives = 50;
     public int startingCurrency = 100;
 
     Currency currency;
-
+    Lives health;
 
 
     GameObject manager;
@@ -24,6 +24,8 @@ public class GameOver : MonoBehaviour
         Debug.Log("is manager null? " + manager.ToString());
         currency = manager.GetComponent<Currency>();
         Debug.Log("is currency script null? " + currency.ToString());
+
+        health = manager.GetComponent<Lives>();
 
         //first time playing through
         if (!PlayerPrefs.HasKey("started"))
@@ -39,7 +41,7 @@ public class GameOver : MonoBehaviour
         gameOverCanvas.SetActive(false);
 
         //set starting lives and currency
-        Lives.lives = startingLives;
+        health.lives = startingLives;
         currency.money = startingCurrency;
     }
 
@@ -47,7 +49,7 @@ public class GameOver : MonoBehaviour
     void Update()
     {
         //activate game over mode
-        if (Lives.lives == 0)
+        if (health.lives == 0)
         {
             gameOverCanvas.SetActive(true);
             Time.timeScale = 0f;
@@ -76,7 +78,7 @@ public class GameOver : MonoBehaviour
         //Currency.money = startingCurrency;
         //gameOverCanvas.SetActive(false);
         Time.timeScale = 1f;
-        Lives.lives = startingLives;
+        health.lives = startingLives;
         currency.money = startingCurrency;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

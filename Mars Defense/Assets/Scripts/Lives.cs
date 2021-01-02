@@ -6,7 +6,7 @@ using TMPro;
 public class Lives : MonoBehaviour
 {
     [Header("Initialization")]
-    public static int lives;
+    public int lives = 50;
     public TextMeshProUGUI livesUGUI;
 
 

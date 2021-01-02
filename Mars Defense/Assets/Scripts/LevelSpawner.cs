@@ -15,10 +15,17 @@ public class LevelSpawner : MonoBehaviour
     private int levelIndex = 0;
     private bool gameStarted = false;
 
+    //serialize an enemy speed bar that designer can adjust
+
+    //GameObject manager;
+    //Enemy enemyScript;
 
     //tells the script the game has started, and the enemies will now be spawned
     public void GameStarted()
     {
+        //manager = GameObject.FindGameObjectWithTag("Manager");
+        //enemyScript = manager.
+
         Debug.Log("spawner knows game started");
         gameStarted = true;
     }
