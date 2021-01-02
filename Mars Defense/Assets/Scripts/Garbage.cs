@@ -5,25 +5,32 @@ using UnityEngine;
 
 public class Garbage : MonoBehaviour
 {
-    private void OnMouseOver()
-    {
-        //Changes color when mouse hovers over it
-    }
+	void Update()
+	{
+        //Debug.Log("Mouse position: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+		{
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-    private void OnMouseDown()
-    {
-        //If mouse is holding a tower, destroy it (in same way as end game does)
-        //destroys the turret prebuild if there is one
+            //         RaycastHit[] hits = Physics.RaycastAll(ray);
+            Collider2D[] colliders = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
-        Debug.Log("Mouse down over the garbage can");
-        //try
-        //{
-        //    GameObject prebuild = GameObject.FindGameObjectWithTag("Prebuild");
-        //    Destroy(prebuild);
-        //}
-        //catch (Exception ex)
-        //{
-        //    Debug.Log("Cannot find prebuild. Exception: " + ex.ToString());
-        //}
-    }
+            //Debug.Log("Number of colliders hit: " + colliders.Length);
+
+            //Debug.Log("Collider 0 hit: " + colliders[0].name);
+            //Debug.Log("Collider 1 hit: " + colliders[1].name);
+
+            //if we have collided with the garbage can, so we should destroy the prebuild
+            if (colliders.Length == 2)
+            {
+                Collider2D colliderr = colliders[1];
+
+                if (colliderr.name.Equals("Garbage"))
+                {
+                    GameObject prebuild = colliders[0].gameObject;
+                    Destroy(prebuild);
+                }
+            }
+        }
+	}
 }

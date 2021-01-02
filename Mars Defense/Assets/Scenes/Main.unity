@@ -2461,7 +2461,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718703766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.41, y: 5.46, z: 0}
+  m_LocalPosition: {x: 9.48, y: 5.48, z: 0}
   m_LocalScale: {x: 4.1945715, y: 4.1945763, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6196,7 +6196,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'PLAY AGAIN
-
 
 '
   m_isRightToLeft: 0
