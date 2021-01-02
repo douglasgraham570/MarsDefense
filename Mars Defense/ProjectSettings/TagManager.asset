@@ -12,6 +12,7 @@ TagManager:
   - Manager
   - Button
   - GameOverPanel
+  - GameStartPanel
   layers:
   - Default
   - TransparentFX
