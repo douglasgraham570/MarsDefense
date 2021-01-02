@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -19,6 +20,9 @@ public class TowerMover : MonoBehaviour
     private string tile;
     private SpriteRenderer[] spriteRenderers;
 
+    Vector3 pointerPosition = -Vector2.one;
+    Vector3 pos;
+
     Currency currency;
 
     private void Start()
@@ -34,23 +38,95 @@ public class TowerMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //update tower's transform
-        Vector3 pointerPosition = -Vector2.one;
-        pointerPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 1));
-        transform.position = pointerPosition;
-        Vector3 pos = transform.position;
-        pos.z = 0;
-        transform.position = pos;
+        MoveTowerToMousePosition();
+        DetermineIfPlaceable();
+        PossiblyChangeColor();
 
-        //determine if tower is placeable on this cell
+        ////update tower's transform
+        //pointerPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 1));
+        //transform.position = pointerPosition;
+        //Vector3 pos = transform.position;
+        //pos.z = 0;
+        //transform.position = pos;
+
+        ////determine if tower is placeable on this cell
+        //Vector3Int cellPosition = grid.WorldToCell(pos);
+        //TileBase tileBase = surface.GetTile(cellPosition);
+        //tile = tileBase.name;
+
+        //if (validTiles.Contains(tile))
+        //{
+        //    placeable = true;
+        //} else
+        //{
+        //    placeable = false;
+        //}
+        ////Debug.Log(tile);
+
+        ////is there enough money to buy the tower?
+        //if (currency.money < towerOneCost)
+        //{
+        //    placeable = false;
+        //}
+
+        ////makes sure tower can only be placed below a certain y-value (to avoid overlapping with top panel)
+        //if (pointerPosition.y >= maxPlacementYVal)
+        //{
+        //    placeable = false;
+        //}
+
+        ////display sprite renderers as red if not placeable
+        //if (placeable)
+        //{
+        //    for (int i = 0; i < spriteRenderers.Length; i++)
+        //    {
+        //         spriteRenderers[i].color = new Color(1, 1, 1, .5f);
+        //    }
+
+        //}
+        //else
+        //{
+        //    for(int i = 0; i < spriteRenderers.Length; i++)
+        //    {
+        //        spriteRenderers[i].color = new Color(1,0,0,.5f);
+        //    }
+
+        //}
+    }
+
+    private void PossiblyChangeColor()
+    {
+        //display sprite renderers as red if not placeable
+        if (placeable)
+        {
+            for (int i = 0; i < spriteRenderers.Length; i++)
+            {
+                spriteRenderers[i].color = new Color(1, 1, 1, .5f);
+            }
+
+        }
+        else
+        {
+            for (int i = 0; i < spriteRenderers.Length; i++)
+            {
+                spriteRenderers[i].color = new Color(1, 0, 0, .5f);
+            }
+
+        }
+    }
+
+    private void DetermineIfPlaceable()
+    {
         Vector3Int cellPosition = grid.WorldToCell(pos);
         TileBase tileBase = surface.GetTile(cellPosition);
         tile = tileBase.name;
 
+
         if (validTiles.Contains(tile))
         {
             placeable = true;
-        } else
+        }
+        else
         {
             placeable = false;
         }
@@ -67,24 +143,16 @@ public class TowerMover : MonoBehaviour
         {
             placeable = false;
         }
+    }
 
-        //display sprite renderers as red if not placeable
-        if (placeable)
-        {
-            for (int i = 0; i < spriteRenderers.Length; i++)
-            {
-                 spriteRenderers[i].color = new Color(1, 1, 1, .5f);
-            }
-
-        }
-        else
-        {
-            for(int i = 0; i < spriteRenderers.Length; i++)
-            {
-                spriteRenderers[i].color = new Color(1,0,0,.5f);
-            }
-
-        }
+    private void MoveTowerToMousePosition()
+    {
+        Vector3 pointerPosition = -Vector2.one;
+        pointerPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 1));
+        transform.position = pointerPosition;
+        pos = transform.position;
+        pos.z = 0;
+        transform.position = pos;
     }
 
     //tower is placed or put back (into menu)
