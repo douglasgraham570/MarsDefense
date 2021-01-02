@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339af2809cff14f7daf5ba0485037f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 5
+  waypoints: []
   waypointRadius: 0.05
   moneyOnDeath: 1
   livesTaken: 1

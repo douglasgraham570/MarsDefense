@@ -11,6 +11,7 @@ TagManager:
   - Lives
   - Manager
   - Button
+  - GameOverPanel
   layers:
   - Default
   - TransparentFX

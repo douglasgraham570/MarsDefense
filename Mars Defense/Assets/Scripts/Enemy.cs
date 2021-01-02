@@ -6,7 +6,7 @@ using TMPro;
 public class Enemy : MonoBehaviour
 {
     //enemy movement speed along path
-	public float speed = 1;
+	public float speed = 200;
 
 	public Transform[] waypoints;
     public float waypointRadius = 0.1f;

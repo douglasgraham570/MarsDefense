@@ -3076,10 +3076,10 @@ RectTransform:
   m_Father: {fileID: 931671533}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 116.174995, y: -38.65}
-  m_SizeDelta: {x: 232.34999, y: 77.3}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1045991705
 MonoBehaviour:
@@ -3187,11 +3187,11 @@ GameObject:
   - component: {fileID: 1071353061}
   m_Layer: 5
   m_Name: GameOverCanvas
-  m_TagString: Untagged
+  m_TagString: GameOverPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1071353061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3850,10 +3850,10 @@ RectTransform:
   m_Father: {fileID: 931671533}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 381.22498, y: -38.65}
-  m_SizeDelta: {x: 232.34999, y: 77.3}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1248090595
 MonoBehaviour:
@@ -4507,6 +4507,7 @@ GameObject:
   - component: {fileID: 1350631127}
   - component: {fileID: 1350631128}
   - component: {fileID: 1350631129}
+  - component: {fileID: 1350631130}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Manager
@@ -4557,6 +4558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f10d51c0f8a46eab6e627b2c9b56b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lives: 1
   livesUGUI: {fileID: 398235168}
 --- !u!114 &1350631128
 MonoBehaviour:
@@ -4571,7 +4573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currencyUGUI: {fileID: 685547296}
-  money: 0
+  money: 200
   towerOneCost: 20
   towerTwoCost: 50
   towerThreeCost: 90
@@ -4585,6 +4587,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd13a9a7c64a94a85bed53319d92332a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1350631130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350631124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866a96a9b525b4faf9b80ceb2a662ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1370846181
