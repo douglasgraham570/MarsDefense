@@ -5,20 +5,31 @@ using UnityEngine;
 
 public class Garbage : MonoBehaviour
 {
-	void Update()
+    Transform garbageTransform;
+
+    private void Start()
+    {
+        garbageTransform = GetComponentInParent<Transform>();
+    }
+
+    void Update()
 	{
+        Collider2D[] colliders = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+
+        //if we have collided with the garbage can, so we should destroy the prebuild
+        if (colliders.Length == 2)
+        {
+            garbageTransform.localScale = new Vector3(4.5f,4.5f,1);
+        }
+        else
+        {
+            garbageTransform.localScale = new Vector3(4f, 4f, 1);
+        }
+
         //Debug.Log("Mouse position: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
         if (Input.GetKeyDown(KeyCode.Mouse0))
 		{
-            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            //         RaycastHit[] hits = Physics.RaycastAll(ray);
-            Collider2D[] colliders = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-
-            //Debug.Log("Number of colliders hit: " + colliders.Length);
-
-            //Debug.Log("Collider 0 hit: " + colliders[0].name);
-            //Debug.Log("Collider 1 hit: " + colliders[1].name);
+            //Collider2D[] colliders = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
             //if we have collided with the garbage can, so we should destroy the prebuild
             if (colliders.Length == 2)
