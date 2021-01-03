@@ -5,12 +5,17 @@ using TMPro;
 
 public class TowerStore : MonoBehaviour
 {
-    public GameObject tower1PrebuildPrefab;
-    public int cost = 5;
+    public GameObject turboPrefab;
+    public GameObject bluePrefab;
+    public GameObject shadowPrefab;
+    public int turboCost = 20;
+    public int redCost = 50;
+    public int shadowCost = 100;
     public RectTransform buttonTransform;
-    private int towerNumber = 1;
-
     public bool hasGameStarted = false;
+
+    private int cost = 0;
+    private GameObject selectedPrefab;
 
     Currency currency;
 
@@ -27,10 +32,29 @@ public class TowerStore : MonoBehaviour
 
     //instantiate tower prebuild at the button's transform if
     //you can afford it
-    public void InstantiatePrebuild()
+    public void InstantiatePrebuild(string towerName)
     {
         if (hasGameStarted)
         {
+            switch (towerName)
+            {
+                case "turbo":
+                    cost = turboCost;
+                    selectedPrefab = turboPrefab;
+                    break;
+                case "blue":
+                    cost = redCost;
+                    selectedPrefab = bluePrefab;
+                    break;
+                case "shadow":
+                    cost = shadowCost;
+                    selectedPrefab = shadowPrefab;
+                    break;
+                default:
+                    cost = 0;
+                    break;
+            }
+
             if (currency.money >= cost)
             {
                 GameObject temp = new GameObject();
@@ -39,19 +63,18 @@ public class TowerStore : MonoBehaviour
 
                 tempTransform.position = buttonTransform.position;
 
-                //Debug.Log("Instantiating tower");
-                Instantiate(tower1PrebuildPrefab, tempTransform);
+                Debug.Log("Instantiating tower: " + selectedPrefab.name);
+                Instantiate(selectedPrefab, tempTransform);
                 return;
 
             }
-            else
-            {
-                Debug.Log("Not enough money to buy");
-            }
+
+                Debug.Log("Not enough money to buy this tower");
+            
         }
         else
         {
-            Debug.Log("Cannot buy. Game hasnot started yet!");
+            Debug.Log("Cannot buy tower. Game has not started yet!");
         }
 
     }
