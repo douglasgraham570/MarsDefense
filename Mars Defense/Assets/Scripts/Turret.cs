@@ -52,6 +52,8 @@ public class Turret : MonoBehaviour
 
     Currency currency;
 
+    Vector3 targetFuturePosition;
+
     private void Awake()
     {
 
@@ -124,10 +126,21 @@ public class Turret : MonoBehaviour
 
     void Fire()
     {
+         //TODO Change the turretToEnemy to accurately reflect where
+         //the enemy SHOULD be based on the enemy's current movement
+
         Transform targetTransform = currentTarget.transform;
 
+        Rigidbody2D targetrb = currentTarget.GetComponent<Rigidbody2D>();
+        Vector3 targetVelocity = targetrb.velocity;
+        Vector3 targetVelocityNormalized = targetrb.velocity.normalized;
+
+        //target's future position
+        targetFuturePosition = targetTransform.position +
+            (targetVelocityNormalized * targetVelocity.magnitude);
+
         //get vector from turrent to enemy
-        Vector3 turretToEnemy = targetTransform.position - transform.position;
+        Vector3 turretToEnemy = targetFuturePosition - transform.position;
 
         //normalize vector
         turretToEnemy.Normalize();
@@ -166,7 +179,7 @@ public class Turret : MonoBehaviour
             bulletSpawn = transform.position + new Vector3(right, up, 0);
         }
 
-        Vector3 shootingDir = currentTarget.transform.position - bulletSpawn;
+        Vector3 shootingDir = targetFuturePosition - bulletSpawn;
 
         //get force to be applied to bullet
         Vector3 bulletForce = shootingDir * strength;

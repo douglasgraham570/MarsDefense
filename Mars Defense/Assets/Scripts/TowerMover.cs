@@ -30,7 +30,6 @@ public class TowerMover : MonoBehaviour
         GameObject manager = GameObject.Find("Manager");
         currency = manager.GetComponent<Currency>();
 
-
         //get the sprite renderers for the base and all of the children
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
     }
@@ -38,10 +37,10 @@ public class TowerMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("mouse position: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
         MoveTowerToMousePosition();
         DetermineIfPlaceable();
         PossiblyChangeColor();
-
     }
 
     private void PossiblyChangeColor()
@@ -88,9 +87,12 @@ public class TowerMover : MonoBehaviour
             placeable = false;
         }
 
+        Debug.Log("pointer position y value: " + pointerPosition.y.ToString());
+
         //makes sure tower can only be placed below a certain y-value (to avoid overlapping with top panel)
         if (pointerPosition.y >= maxPlacementYVal)
         {
+            Debug.Log("pointer position greater than placement val");
             placeable = false;
         }
     }
