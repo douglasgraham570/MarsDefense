@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: bfd7e77522b3949fcb6d564b5b70a9cd, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -154,7 +154,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 3ea46271140f845aa9a06042e829d6c7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -236,7 +236,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 1e2c08b2bb764493b934a3ee8d232bbb, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 1850125642102792858}
   - component: {fileID: 5489119593026803649}
   m_Layer: 9
-  m_Name: BlueBlaster
+  m_Name: TowerShadowSniper
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -274,7 +274,7 @@ Transform:
   m_GameObject: {fileID: 627820844747930433}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0.5}
   m_Children:
   - {fileID: 627820844022070800}
   - {fileID: 627820844980184327}
@@ -324,7 +324,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 9356fa7c075ad4cbe9d74f860bfce3f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -346,12 +346,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da45c67ecb374bcf941e4cdc024ac92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenFire: 1
-  targetUpdateTime: 0.5
+  timeBetweenFire: 0.15
+  targetUpdateTime: 0.15
   hasGuidedMissiles: 0
-  strength: 250
-  turretCost: 20
-  bulletPrefab: {fileID: 6945309564369008398, guid: 1185b4284a349474883732eb44b7cc5f, type: 3}
+  strength: 400
+  turretCost: 100
+  bulletPrefab: {fileID: 6945309564369008398, guid: e64c980e44a5048a8bf500146d334ba6, type: 3}
   missilePrefab: {fileID: 6945309564369008398, guid: 092218119c2fc4d2ca671dc55b99fe4d, type: 3}
   enemyTag: Enemy
   up: 0.75
@@ -446,7 +446,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: cdef67fb8a63f412a81795e686e9431c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

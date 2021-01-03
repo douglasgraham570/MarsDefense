@@ -19,6 +19,7 @@ public class TowerMover : MonoBehaviour
     private bool placeable = true;
     private string tile;
     private SpriteRenderer[] spriteRenderers;
+    private Color originalColor;
 
     Vector3 pointerPosition = -Vector2.one;
     Vector3 pos;
@@ -32,6 +33,9 @@ public class TowerMover : MonoBehaviour
 
         //get the sprite renderers for the base and all of the children
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+
+        //get reference to original color
+        originalColor = GetComponent<SpriteRenderer>().color;
     }
 
     // Update is called once per frame
@@ -45,20 +49,21 @@ public class TowerMover : MonoBehaviour
 
     private void PossiblyChangeColor()
     {
-        //display sprite renderers as red if not placeable
+        //display color normally if placeable
         if (placeable)
         {
             for (int i = 0; i < spriteRenderers.Length; i++)
             {
-                spriteRenderers[i].color = new Color(1, 1, 1, .5f);
+                spriteRenderers[i].color = new Color(originalColor.r, originalColor.b, originalColor.g, .5f);
             }
 
         }
-        else
+        else //display as red and transparent, but otherwise keep the original colors
         {
             for (int i = 0; i < spriteRenderers.Length; i++)
             {
-                spriteRenderers[i].color = new Color(1, 0, 0, .5f);
+                Debug.Log("original RGB r value: " + originalColor.r.ToString());
+                spriteRenderers[i].color = new Color(originalColor.r + .3f, originalColor.b, originalColor.g, .5f);
             }
 
         }
@@ -67,6 +72,7 @@ public class TowerMover : MonoBehaviour
     private void DetermineIfPlaceable()
     {
         Vector3Int cellPosition = grid.WorldToCell(pos);
+        Debug.Log("Cell position: " + cellPosition.ToString());
         TileBase tileBase = surface.GetTile(cellPosition);
         tile = tileBase.name;
 
