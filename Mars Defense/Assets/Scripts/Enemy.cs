@@ -11,8 +11,10 @@ public class Enemy : MonoBehaviour
 	public Transform[] waypoints;
     public float waypointRadius = 0.1f;
 
-    public int moneyOnDeath = 1;
+    public int moneyOnDeath = 5;
     public int livesTaken = 1;
+
+    public int hitPoints = 5;
 
     //reference to currency GUI
     private TextMeshProUGUI currencyText;
@@ -86,7 +88,16 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Bullet" && hitPoints > 1) //more than one hitpoint left
+        {
+            //destroy the bullet
+            Destroy(collision.gameObject);
+
+            //we have been hit by the bullet so we lose a hitpoint
+            hitPoints -= 1;
+            Debug.Log("we lost a hitpoint. hitpoints remaining: " + hitPoints.ToString());
+        }
+        else if (collision.gameObject.tag == "Bullet") //on last hitpoint, so death on hit
         {
             currency.money += moneyOnDeath;
             Destroy(collision.gameObject);
