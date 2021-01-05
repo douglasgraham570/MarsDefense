@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class LevelSpawner : MonoBehaviour
 {
-    public Transform enemyPrefab;
-    public Transform spawnPoint;
+    [SerializeField] Transform enemy1Prefab;
+    [SerializeField] Transform enemy2Prefab;
+    [SerializeField] Transform enemy3Prefab;
+    [SerializeField] Transform spawnPoint;
 
     public int spawnNum = 0;
     public float timeBetweenEnemies = 0.25f;
-
     public float timeBetweenLevels = 5f;
+
     private float countdown = 2f;
     private int levelIndex = 0;
     private bool gameStarted = false;
+    private Transform currentPrefab;
 
     //serialize an enemy speed bar that designer can adjust
 
@@ -68,10 +71,23 @@ public class LevelSpawner : MonoBehaviour
     //spawns a wave of a certain enemy type
     IEnumerator Spawn()
     {
-        
-        for (int i = 0; i < spawnNum ; i++)
+        if (levelIndex < 5) //spawn enemy1
         {
-            Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+            currentPrefab = enemy1Prefab;
+        }
+        else if (levelIndex < 10) //spawn enemy2
+        {
+            spawnNum = 1;
+            currentPrefab = enemy2Prefab;
+        } else //spawn enemy3
+        {
+            spawnNum = 1;
+            currentPrefab = enemy3Prefab;
+        }
+
+        for (int i = 0; i < spawnNum ; i++) //spawn whatever enemy has been selected
+        {
+            Instantiate(currentPrefab, spawnPoint.position, spawnPoint.rotation);
             yield return new WaitForSeconds(timeBetweenEnemies);
         }
             

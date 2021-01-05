@@ -99,9 +99,12 @@ public class Enemy : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Bullet") //on last hitpoint, so death on hit
         {
+            Debug.Log("our current money: " + currency.money.ToString());
             currency.money += moneyOnDeath;
+            Debug.Log("our new money: " + currency.money.ToString());
             Destroy(collision.gameObject);
             Destroy(gameObject);
+            
         }
     }
 }
