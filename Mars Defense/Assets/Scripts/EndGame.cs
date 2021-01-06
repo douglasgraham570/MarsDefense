@@ -21,16 +21,7 @@ public class EndGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckIfPressedEscape();
         CheckIfGameOver();
-    }
-
-    private void CheckIfPressedEscape()
-    {
-        if (Input.GetKey("escape"))
-        {
-            EscapeFromGame();
-        }
     }
 
     private void CheckIfGameOver()

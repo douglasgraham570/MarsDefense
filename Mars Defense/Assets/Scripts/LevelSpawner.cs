@@ -10,8 +10,8 @@ public class LevelSpawner : MonoBehaviour
     [SerializeField] Transform spawnPoint;
 
     public int spawnNum = 0;
-    public float timeBetweenEnemies = 0.25f;
-    public float timeBetweenLevels = 5f;
+    public float timeBetweenEnemies = 0.5f;
+    public float timeBetweenLevels = 10f;
 
     private float countdown = 2f;
     private int levelIndex = 0;
@@ -75,14 +75,23 @@ public class LevelSpawner : MonoBehaviour
         {
             currentPrefab = enemy1Prefab;
         }
-        else if (levelIndex < 10) //spawn enemy2
+        else if (levelIndex == 5) //spawn enemy2
         {
-            spawnNum = 1;
             currentPrefab = enemy2Prefab;
-        } else //spawn enemy3
-        {
             spawnNum = 1;
+        }
+        else if (levelIndex < 20) //spawn enemy2
+        {
+            currentPrefab = enemy2Prefab;
+        }
+        else if (levelIndex == 20)//spawn enemy3
+        {
             currentPrefab = enemy3Prefab;
+            spawnNum = 1;
+        }
+        else if (levelIndex == 10) //spawn enemy2
+        {
+            currentPrefab = enemy2Prefab;
         }
 
         for (int i = 0; i < spawnNum ; i++) //spawn whatever enemy has been selected
