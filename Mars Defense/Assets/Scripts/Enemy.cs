@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
 
     Currency currency;
     Lives health;
+    HighScore highScore;
 
     //current waypoint enemy is heading towards
     private Transform currentWaypoint;
@@ -33,6 +34,7 @@ public class Enemy : MonoBehaviour
         GameObject manager = GameObject.Find("Manager");
         currency = manager.GetComponent<Currency>();
         health = manager.GetComponent<Lives>();
+        highScore = manager.GetComponent<HighScore>();
 
         //get reference to the currency UGUI
         GameObject currencyObj = GameObject.FindGameObjectWithTag("Currency");
@@ -101,6 +103,8 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("our current money: " + currency.money.ToString());
             currency.money += moneyOnDeath;
+            highScore.score += moneyOnDeath;
+
             Debug.Log("our new money: " + currency.money.ToString());
             Destroy(collision.gameObject);
             Destroy(gameObject);
