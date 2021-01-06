@@ -46,6 +46,7 @@ public class PauseGame : MonoBehaviour
 
     public void ResumeGame()
     {
+        isPaused = false;
         Debug.Log("Resuming game from pause");
         pauseCanvas.enabled = false;
         Time.timeScale = 1;
