@@ -9,6 +9,7 @@ public class HighScore : MonoBehaviour
     /***********************************/
     /*            VARIABLES            */
     /***********************************/
+    [SerializeField] TextMeshProUGUI scoreGUI;
     [SerializeField] TextMeshProUGUI highScoreGUI;
 
     public int score = 0;
@@ -28,6 +29,7 @@ public class HighScore : MonoBehaviour
         try
         {
             highScore = PlayerPrefs.GetInt("highScore", 0);
+            highScoreGUI.text = "HIGH SCORE: " + highScore;
         }
         catch (Exception ex)
         {
@@ -42,6 +44,8 @@ public class HighScore : MonoBehaviour
 
     void Update()
     {
+        scoreGUI.text = "SCORE: " + score;
+
         if (score > highScore)
         {
             highScore = score;
