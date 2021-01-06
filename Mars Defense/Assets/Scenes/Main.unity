@@ -1796,7 +1796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489937, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_Name
-      value: Turret Label
+      value: Blue Label
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_margin.y
@@ -1812,21 +1812,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_text
-      value: 'BLUE BLASTER $50
-
-'
+      value: 'BLUE BLASTER: $'
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 17
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_fontStyle
@@ -2011,6 +2009,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 831558103542816021, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
   m_PrefabInstance: {fileID: 412929520}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &436082796 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
+  m_PrefabInstance: {fileID: 604683878}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &439096905
 GameObject:
   m_ObjectHideFlags: 0
@@ -2735,7 +2744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489937, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_Name
-      value: Turret Label
+      value: Shadow Label
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_margin.y
@@ -2751,22 +2760,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_text
-      value: 'SHADOW SNIPER: $100
+      value: 'SHADOW SNIPER: $
+
+
 
 
 '
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 21
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_fontStyle
@@ -2782,7 +2793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_margin.z
@@ -3511,6 +3522,17 @@ Transform:
   m_Father: {fileID: 121693904}
   m_RootOrder: 71
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &814133855 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
+  m_PrefabInstance: {fileID: 831558102375406967}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &830863654
 GameObject:
   m_ObjectHideFlags: 0
@@ -6195,10 +6217,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currencyUGUI: {fileID: 685547296}
-  money: 40
-  towerOneCost: 20
-  towerTwoCost: 50
-  towerThreeCost: 90
+  turboUGUI: {fileID: 814133855}
+  blueUGUI: {fileID: 1832849847}
+  shadowUGUI: {fileID: 436082796}
+  money: 500
+  turboCost: 100
+  blueCost: 400
+  shadowCost: 2000
 --- !u!114 &1350631129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7625,6 +7650,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820759571}
   m_CullTransparentMesh: 0
+--- !u!114 &1832849847 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
+  m_PrefabInstance: {fileID: 412929520}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1845759569
 GameObject:
   m_ObjectHideFlags: 0
@@ -8722,7 +8758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489937, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_Name
-      value: Turret Label
+      value: Turbo Label
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_margin.y
@@ -8738,21 +8774,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_text
-      value: 'TURBO TURRET: $20
+      value: 'TURBO TURRET: $
+
 
 '
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_fontStyle
@@ -8768,7 +8805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 831558102688489951, guid: 50909e7a2331c4adabb5db5277dac0c1, type: 3}
       propertyPath: m_margin.z

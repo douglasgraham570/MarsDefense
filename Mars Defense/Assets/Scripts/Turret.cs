@@ -19,7 +19,7 @@ public class Turret : MonoBehaviour
     public float strength = 5.0f;
 
     //cost
-    public int turretCost = 20;
+    public int cost = 20;
 
     [Header("Prefabs")]
 
@@ -54,15 +54,20 @@ public class Turret : MonoBehaviour
 
     Vector3 targetFuturePosition;
 
+    string specificTower;
+
     private void Awake()
     {
 
         GameObject manager = GameObject.Find("Manager");
         currency = manager.GetComponent<Currency>();
 
+        //what kind of tower is it attached to?
+        specificTower = transform.name;
+        Debug.Log("the tower selected is: " + specificTower);
 
-        //Debug.Log("Awaking Turret");
-        currency.money -= turretCost;
+        currency.Purchase(specificTower);
+
 
         //get reference to each potential turret head
         turretSE = transform.GetChild(1);
@@ -77,7 +82,7 @@ public class Turret : MonoBehaviour
         InvokeRepeating("UpdateTarget", 0f, targetUpdateTime);
         
     }
-     
+
     void UpdateTarget()
     {
         GameObject[] targets = GameObject.FindGameObjectsWithTag("Enemy");

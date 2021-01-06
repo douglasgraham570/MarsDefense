@@ -350,7 +350,7 @@ MonoBehaviour:
   targetUpdateTime: 0.5
   hasGuidedMissiles: 0
   strength: 400
-  turretCost: 20
+  turretCost: 100
   bulletPrefab: {fileID: 6945309564369008398, guid: 1185b4284a349474883732eb44b7cc5f, type: 3}
   missilePrefab: {fileID: 6945309564369008398, guid: 092218119c2fc4d2ca671dc55b99fe4d, type: 3}
   enemyTag: Enemy

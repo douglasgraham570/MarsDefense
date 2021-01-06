@@ -50,7 +50,7 @@ MonoBehaviour:
   speed: 1
   waypoints: []
   waypointRadius: 0.05
-  moneyOnDeath: 5
+  moneyOnDeath: 10
   livesTaken: 1
   hitPoints: 3
 --- !u!58 &-4625532175348152792

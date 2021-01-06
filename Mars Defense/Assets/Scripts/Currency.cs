@@ -6,22 +6,42 @@ using TMPro;
 public class Currency : MonoBehaviour
 {
     [Header("Initialization")]
-    public TextMeshProUGUI currencyUGUI;
+    [SerializeField] TextMeshProUGUI currencyUGUI;
+    [SerializeField] TextMeshProUGUI turboUGUI;
+    [SerializeField] TextMeshProUGUI blueUGUI;
+    [SerializeField] TextMeshProUGUI shadowUGUI;
 
     public int money = 200;
-    public int towerOneCost = 20;
-    public int towerTwoCost = 50;
-    public int towerThreeCost = 90;
+    public int turboCost = 20;
+    public int blueCost = 50;
+    public int shadowCost = 90;
 
-    public static bool Purchase(GameObject towerPrefab)
+    //subtract money based on the tower purchased
+    public void Purchase(string tower)
     {
-        return true;
+        switch (tower)
+        {
+            case "turbo":
+                money -= turboCost;
+                break;
+            case "blue":
+                money -= blueCost;
+                break;
+            case "shadow":
+                money -= shadowCost;
+                break;
+            default:
+                money -= turboCost;
+                break;
+        }
     }
 
     //continually update the currency due to enemies hit, towers/upgrades bought, and levels finished
     private void Update()
     {
         currencyUGUI.text = "$" + money.ToString();
-
+        turboUGUI.text = "$" + turboCost.ToString();
+        blueUGUI.text = "$" + blueCost.ToString();
+        shadowUGUI.text = "$" + shadowCost.ToString();
     }
 }
