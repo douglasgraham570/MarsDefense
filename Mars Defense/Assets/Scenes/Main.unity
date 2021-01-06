@@ -6220,7 +6220,7 @@ MonoBehaviour:
   turboUGUI: {fileID: 814133855}
   blueUGUI: {fileID: 1832849847}
   shadowUGUI: {fileID: 436082796}
-  money: 500
+  money: 400
   turboCost: 100
   blueCost: 250
   shadowCost: 750

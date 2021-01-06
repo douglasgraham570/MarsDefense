@@ -36,27 +36,28 @@ public class TowerStore : MonoBehaviour
     {
         if (hasGameStarted)
         {
-            switch (towerName)
-            {
-                case "turbo":
-                    cost = turboCost;
-                    selectedPrefab = turboPrefab;
-                    break;
-                case "blue":
-                    cost = redCost;
-                    selectedPrefab = bluePrefab;
-                    break;
-                case "shadow":
-                    cost = shadowCost;
-                    selectedPrefab = shadowPrefab;
-                    break;
-                default:
-                    cost = 0;
-                    break;
-            }
 
             if (currency.money >= cost)
             {
+                switch (towerName)
+                {
+                    case "turbo":
+                        cost = turboCost;
+                        selectedPrefab = turboPrefab;
+                        break;
+                    case "blue":
+                        cost = redCost;
+                        selectedPrefab = bluePrefab;
+                        break;
+                    case "shadow":
+                        cost = shadowCost;
+                        selectedPrefab = shadowPrefab;
+                        break;
+                    default:
+                        cost = 0;
+                        break;
+                }
+
                 GameObject temp = new GameObject();
 
                 Transform tempTransform = temp.transform;

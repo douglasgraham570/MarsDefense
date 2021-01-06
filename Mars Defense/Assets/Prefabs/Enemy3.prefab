@@ -52,7 +52,7 @@ MonoBehaviour:
   waypointRadius: 0.05
   moneyOnDeath: 30
   livesTaken: 10
-  hitPoints: 10
+  hitPoints: 20
 --- !u!58 &-4625532175348152792
 CircleCollider2D:
   m_ObjectHideFlags: 0
