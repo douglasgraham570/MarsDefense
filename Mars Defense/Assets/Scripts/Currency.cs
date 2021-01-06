@@ -17,17 +17,20 @@ public class Currency : MonoBehaviour
     public int shadowCost = 90;
 
     //subtract money based on the tower purchased
-    public void Purchase(string tower)
+    public void Purchase(string towerTag)
     {
-        switch (tower)
+        Debug.Log("########  Tag received: " + towerTag);
+        switch (towerTag)
         {
-            case "turbo":
+            case "Turbo":
                 money -= turboCost;
                 break;
-            case "blue":
+            case "Blue":
                 money -= blueCost;
+                Debug.Log("()()()() in Blue case. money being subtracted by: "
+                    + blueCost);
                 break;
-            case "shadow":
+            case "Shadow":
                 money -= shadowCost;
                 break;
             default:
@@ -36,12 +39,16 @@ public class Currency : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        turboUGUI.text = "$" + turboCost.ToString();
+        blueUGUI.text = "$" + blueCost.ToString();
+        shadowUGUI.text = "$" + shadowCost.ToString();
+    }
+
     //continually update the currency due to enemies hit, towers/upgrades bought, and levels finished
     private void Update()
     {
         currencyUGUI.text = "$" + money.ToString();
-        turboUGUI.text = "$" + turboCost.ToString();
-        blueUGUI.text = "$" + blueCost.ToString();
-        shadowUGUI.text = "$" + shadowCost.ToString();
     }
 }

@@ -6222,8 +6222,8 @@ MonoBehaviour:
   shadowUGUI: {fileID: 436082796}
   money: 500
   turboCost: 100
-  blueCost: 400
-  shadowCost: 2000
+  blueCost: 250
+  shadowCost: 750
 --- !u!114 &1350631129
 MonoBehaviour:
   m_ObjectHideFlags: 0

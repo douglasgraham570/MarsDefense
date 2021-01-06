@@ -15,6 +15,9 @@ TagManager:
   - GameStartPanel
   - Prebuild
   - PausePanel
+  - Turbo
+  - Blue
+  - Shadow
   layers:
   - Default
   - TransparentFX

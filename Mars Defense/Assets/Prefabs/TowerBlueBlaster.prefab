@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 5489119593026803649}
   m_Layer: 9
   m_Name: TowerBlueBlaster
-  m_TagString: Tower
+  m_TagString: Blue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -350,7 +350,7 @@ MonoBehaviour:
   targetUpdateTime: 0.3
   hasGuidedMissiles: 0
   strength: 400
-  turretCost: 800
+  cost: 20
   bulletPrefab: {fileID: 6945309564369008398, guid: eaacc77a8f0c14b46b88a24a14faeba5, type: 3}
   missilePrefab: {fileID: 6945309564369008398, guid: 092218119c2fc4d2ca671dc55b99fe4d, type: 3}
   enemyTag: Enemy

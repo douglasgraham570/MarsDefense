@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 5489119593026803649}
   m_Layer: 9
   m_Name: TowerShadowSniper
-  m_TagString: Tower
+  m_TagString: Shadow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -350,7 +350,7 @@ MonoBehaviour:
   targetUpdateTime: 0.15
   hasGuidedMissiles: 0
   strength: 400
-  turretCost: 2000
+  cost: 20
   bulletPrefab: {fileID: 6945309564369008398, guid: e64c980e44a5048a8bf500146d334ba6, type: 3}
   missilePrefab: {fileID: 6945309564369008398, guid: 092218119c2fc4d2ca671dc55b99fe4d, type: 3}
   enemyTag: Enemy

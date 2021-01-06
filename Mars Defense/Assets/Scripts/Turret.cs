@@ -63,7 +63,7 @@ public class Turret : MonoBehaviour
         currency = manager.GetComponent<Currency>();
 
         //what kind of tower is it attached to?
-        specificTower = transform.name;
+        specificTower = transform.tag;
         Debug.Log("the tower selected is: " + specificTower);
 
         currency.Purchase(specificTower);
