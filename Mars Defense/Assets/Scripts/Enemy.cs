@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     Currency currency;
     Lives health;
     HighScore highScore;
+    LevelSpawner waveSpawner;
 
     //current waypoint enemy is heading towards
     private Transform currentWaypoint;
@@ -35,6 +36,7 @@ public class Enemy : MonoBehaviour
         currency = manager.GetComponent<Currency>();
         health = manager.GetComponent<Lives>();
         highScore = manager.GetComponent<HighScore>();
+        waveSpawner = manager.GetComponent<LevelSpawner>();
 
         //get reference to the currency UGUI
         GameObject currencyObj = GameObject.FindGameObjectWithTag("Currency");
@@ -101,6 +103,8 @@ public class Enemy : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Bullet") //on last hitpoint, so death on hit
         {
+            waveSpawner.EnemiesAlive -= 1;
+
             Debug.Log("our current money: " + currency.money.ToString());
             currency.money += moneyOnDeath;
             highScore.score += moneyOnDeath;

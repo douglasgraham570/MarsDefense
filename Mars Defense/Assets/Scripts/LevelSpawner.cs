@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LevelSpawner : MonoBehaviour
 {
+    public int EnemiesAlive = 0;
+
     [SerializeField] Transform enemy1Prefab;
     [SerializeField] Transform enemy2Prefab;
     [SerializeField] Transform enemy3Prefab;
@@ -13,7 +15,7 @@ public class LevelSpawner : MonoBehaviour
     public float timeBetweenEnemies = 0.5f;
     public float timeBetweenLevels = 10f;
 
-    private float countdown = 2f;
+    private float countdown = 2f; //when to spawn next wave
     private int levelIndex = 0;
     private bool gameStarted = false;
     private Transform currentPrefab;
@@ -36,10 +38,11 @@ public class LevelSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameStarted)
+        //don't spawn new wave until we don't have enemies anymore
+        if (gameStarted && (EnemiesAlive <= 0))
         {
             //spawn level when countdown reaches 0
-            if (countdown <= 0)
+            if (countdown <= 0f)
             {
                 spawnNum += 1;
 
@@ -49,19 +52,18 @@ public class LevelSpawner : MonoBehaviour
                 //reset countdown to the time between levels
                 countdown = timeBetweenLevels;
 
+                return;
             }
-
 
             //decremet countdown relative to framerate
             countdown -= Time.deltaTime;
-
         }
     }
 
     //spawns a level
     void SpawnLevel()
     {
-        levelIndex += 1;
+        levelIndex ++;
 
         //spawn wave of enemies
         StartCoroutine(Spawn());
@@ -97,6 +99,7 @@ public class LevelSpawner : MonoBehaviour
         for (int i = 0; i < spawnNum ; i++) //spawn whatever enemy has been selected
         {
             Instantiate(currentPrefab, spawnPoint.position, spawnPoint.rotation);
+            EnemiesAlive++;
             yield return new WaitForSeconds(timeBetweenEnemies);
         }
             
