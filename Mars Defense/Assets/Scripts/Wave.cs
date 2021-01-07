@@ -11,35 +11,21 @@ public class Wave
     /***********************************/
     public List<Transform> enemies;
     public List<int> counts;
-    public int totalEnemies = 0;
     public float spawnRate;
+    public List<Transform> enemyOrder = new List<Transform>();
 
     GameObject manager;
     LevelSpawner spawner;
 
-    List<Transform> enemyOrder = new List<Transform>();
 
     /***********************************/
     /*              INIT               */
     /***********************************/
 
-    void Awake()
+    public void Init()
     {
-        //calculate total enemies
-        foreach (var count in counts)
-        {
-            totalEnemies += count;
-        }
-
-        Debug.Log("Total enemies in the level: " + totalEnemies);
-
         manager = GameObject.Find("Manager");
         spawner = manager.GetComponent <LevelSpawner>();
-    }
-
-    void Start()
-    {
-        DetermineEnemyOrder();
     }
 
     /***********************************/
@@ -47,25 +33,36 @@ public class Wave
     /***********************************/
 
     //initialize the enemyOrder array to the desired order of enemies arriving
-    private void DetermineEnemyOrder()
+    public void DetermineEnemyOrder()
     {
         //for every enemy selected
-        for (int i = 0; i < enemies.Capacity; i++)
+        for (int i = 0; i < enemies.Count; i++)
         {
             try
             {
                 //add one enemy for each count of that enemy
                 for (int j = 0; j < counts[i]; j++)
                 {
+                    foreach (var orderedEnemy in enemyOrder)
+                    {
+                        Debug.Log("enemy before ");
+                    }
+                    Debug.Log("count: " + j + " out of: " + counts[i]);
+
                     enemyOrder.Add(enemies[i]);
+                    
+                        Debug.Log("enemy order count " + enemyOrder.Count);
                 }
 
             }
             catch (Exception ex)
             {
-                Debug.Log("counts list cannot have size less than enemies list");
+                Debug.Log(ex.Message);
             }
         }
+
+        Debug.Log("size of enemyOrder after adding: " + enemyOrder.Count);
+
     }
 
     public void SpawnNextEnemy(int enemyIndex)

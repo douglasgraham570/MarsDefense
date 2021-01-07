@@ -26,7 +26,7 @@ public class LevelSpawner : MonoBehaviour
     void Update()
     {
         //don't spawn new wave until we don't have enemies anymore
-        if (gameStarted && (EnemiesAlive <= 0))
+        if (gameStarted && (EnemiesAlive <= 0) && waveIndex < waves.Length)
         {
             //spawn level when countdown reaches 0
             if (countdown <= 0f)
@@ -48,11 +48,22 @@ public class LevelSpawner : MonoBehaviour
     IEnumerator Spawn()
     {
         Wave wave = waves[waveIndex];
+        int waveEnemies = 0;
 
-        Debug.Log("wave total enemies: " + wave.totalEnemies + ". Should be 3");
+        foreach (var count in wave.counts)
+        {
+            waveEnemies += count;
+        }
+
+        Debug.Log("wave total enemies: " + waveEnemies + ". Should be 3");
+
+        wave.Init();
+        wave.DetermineEnemyOrder();
+
+        Debug.Log("wave order: " + wave.enemyOrder.ToString());
 
         //TODO Fix wave total enemies
-        for (int i = 0; i < wave.totalEnemies ; i++) //spawn whatever enemy has been selected
+        for (int i = 0; i < waveEnemies ; i++) //spawn whatever enemy has been selected
         {
             //SpawnEnemy();
             wave.SpawnNextEnemy(i);

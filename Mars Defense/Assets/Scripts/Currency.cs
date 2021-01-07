@@ -19,7 +19,6 @@ public class Currency : MonoBehaviour
     //subtract money based on the tower purchased
     public void Purchase(string towerTag)
     {
-        Debug.Log("########  Tag received: " + towerTag);
         switch (towerTag)
         {
             case "Turbo":

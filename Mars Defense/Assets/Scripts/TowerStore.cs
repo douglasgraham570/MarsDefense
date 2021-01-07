@@ -40,12 +40,9 @@ public class TowerStore : MonoBehaviour
             }
 
             GameObject temp = new GameObject();
-
             Transform tempTransform = temp.transform;
-
             tempTransform.position = buttonTransform.position;
 
-            Debug.Log("Instantiating tower: " + selectedPrefab.name);
             GameObject instantiatedTower = Instantiate(selectedPrefab, tempTransform);
             return;  
         }

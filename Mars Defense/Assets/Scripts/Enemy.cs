@@ -76,6 +76,7 @@ public class Enemy : MonoBehaviour
                     health.lives -= livesTaken;
                 }
 
+                waveSpawner.EnemiesAlive--;
                 Destroy(gameObject);
                 return;
             }
@@ -103,7 +104,7 @@ public class Enemy : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Bullet") //on last hitpoint, so death on hit
         {
-            waveSpawner.EnemiesAlive -= 1;
+            waveSpawner.EnemiesAlive --;
 
             Debug.Log("our current money: " + currency.money.ToString());
             currency.money += moneyOnDeath;

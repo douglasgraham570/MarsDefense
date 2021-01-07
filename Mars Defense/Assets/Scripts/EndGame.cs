@@ -17,8 +17,6 @@ public class EndGame : MonoBehaviour
     void Start()
     {
         health = GetComponent<Lives>();
-        Debug.Log("Got a reference to the game over canvas ");
-
         gameOver = GameObject.FindGameObjectWithTag("GameOverPanel");
     }
 

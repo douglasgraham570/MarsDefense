@@ -34,8 +34,6 @@ public class TowerMover : MonoBehaviour
         //get reference to original color
         originalColor = GetComponent<SpriteRenderer>().color;
 
-        Debug.Log("tower prefab tag: " + towerPrefab.tag);
-
         towerCost = currency.GetCost(towerPrefab.tag);
     }
 
@@ -63,10 +61,8 @@ public class TowerMover : MonoBehaviour
         {
             for (int i = 0; i < spriteRenderers.Length; i++)
             {
-                Debug.Log("original RGB r value: " + originalColor.r.ToString());
                 spriteRenderers[i].color = new Color(originalColor.r + .3f, originalColor.b, originalColor.g, .5f);
             }
-
         }
     }
 
@@ -123,8 +119,6 @@ public class TowerMover : MonoBehaviour
         if (placeable && (currency.money >= towerCost))
         {
             currency.Purchase(towerPrefab.tag);
-            Debug.Log("^*$%^&$%^& The tag of selected tower is: " + tag);
-
             towerLocation = new GameObject(towerPrefab.name);
             Transform towerTransform = towerLocation.transform;
             Vector3 towerPosition = towerTransform.position;
