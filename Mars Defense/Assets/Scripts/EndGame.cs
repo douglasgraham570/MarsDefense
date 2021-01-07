@@ -3,9 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class EndGame : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI gameOverScore;
+    [SerializeField] HighScore highScore;
+
     private Lives health;
     private GameObject gameOver;
 
@@ -28,6 +32,10 @@ public class EndGame : MonoBehaviour
     {
         if (health.lives <= 0)
         {
+            //display score and highScore on the game over panel
+            gameOverScore.text = "Score: " + highScore.score +
+                            "\n" + "High Score: " + PlayerPrefs.GetInt("highScore");
+
             //game over canvas is visible now
             Canvas gameOverCanvas = gameOver.GetComponent<Canvas>();
             gameOverCanvas.enabled = true;
