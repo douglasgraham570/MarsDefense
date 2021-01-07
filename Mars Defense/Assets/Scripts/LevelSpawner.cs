@@ -1,36 +1,36 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelSpawner : MonoBehaviour
 {
+    public Wave[] waves;
     public int EnemiesAlive = 0;
+    public int spawnNum = 0;
+    public float timeBetweenEnemies = 0.5f;
+    public float timeBetweenLevels = 10f;
 
     [SerializeField] Transform enemy1Prefab;
     [SerializeField] Transform enemy2Prefab;
     [SerializeField] Transform enemy3Prefab;
     [SerializeField] Transform spawnPoint;
 
-    public int spawnNum = 0;
-    public float timeBetweenEnemies = 0.5f;
-    public float timeBetweenLevels = 10f;
-
     private float countdown = 2f; //when to spawn next wave
-    private int levelIndex = 0;
+    private int waveIndex = 0;
     private bool gameStarted = false;
     private Transform currentPrefab;
+    int a, b = 5;
 
-    //serialize an enemy speed bar that designer can adjust
-
-    //GameObject manager;
-    //Enemy enemyScript;
+    private void Awake()
+    {
+        //default enemy is enemy 1
+        currentPrefab = enemy1Prefab;
+    }
 
     //tells the script the game has started, and the enemies will now be spawned
     public void GameStarted()
     {
-        //manager = GameObject.FindGameObjectWithTag("Manager");
-        //enemyScript = manager.
-
         Debug.Log("spawner knows game started");
         gameStarted = true;
     }
@@ -46,8 +46,7 @@ public class LevelSpawner : MonoBehaviour
             {
                 spawnNum += 1;
 
-                //spawn the next level
-                SpawnLevel();
+                StartCoroutine(Spawn());
 
                 //reset countdown to the time between levels
                 countdown = timeBetweenLevels;
@@ -60,48 +59,23 @@ public class LevelSpawner : MonoBehaviour
         }
     }
 
-    //spawns a level
-    void SpawnLevel()
-    {
-        levelIndex ++;
-
-        //spawn wave of enemies
-        StartCoroutine(Spawn());
-   
-    }
-
     //spawns a wave of a certain enemy type
     IEnumerator Spawn()
     {
-        if (levelIndex < 5) //spawn enemy1
-        {
-            currentPrefab = enemy1Prefab;
-        }
-        else if (levelIndex == 5) //spawn enemy2
-        {
-            currentPrefab = enemy2Prefab;
-            spawnNum = 1;
-        }
-        else if (levelIndex < 20) //spawn enemy2
-        {
-            currentPrefab = enemy2Prefab;
-        }
-        else if (levelIndex == 20)//spawn enemy3
-        {
-            currentPrefab = enemy3Prefab;
-            spawnNum = 1;
-        }
-        else if (levelIndex == 10) //spawn enemy2
-        {
-            currentPrefab = enemy2Prefab;
-        }
+        Wave wave = waves[waveIndex];
 
-        for (int i = 0; i < spawnNum ; i++) //spawn whatever enemy has been selected
+        for (int i = 0; i < wave.totalEnemies ; i++) //spawn whatever enemy has been selected
         {
-            Instantiate(currentPrefab, spawnPoint.position, spawnPoint.rotation);
-            EnemiesAlive++;
+            SpawnEnemy();
             yield return new WaitForSeconds(timeBetweenEnemies);
         }
-            
+
+        waveIndex++;
+    }
+
+    public void SpawnEnemy(Transform enemyPrefab)
+    {
+        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        EnemiesAlive++;
     }
 }
