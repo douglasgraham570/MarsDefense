@@ -12,19 +12,16 @@ public class TowerMover : MonoBehaviour
     public List<string> validTiles = new List<string>();
     public List<string> nonvalidTiles = new List<string>();
     public float maxPlacementYVal = 0;
-    public int towerOneCost = 20;
-
 
     private GameObject towerLocation;
     private bool placeable = true;
     private string tile;
     private SpriteRenderer[] spriteRenderers;
     private Color originalColor;
-
     Vector3 pointerPosition = -Vector2.one;
     Vector3 pos;
-
     Currency currency;
+    int towerCost = 0;
 
     private void Start()
     {
@@ -36,6 +33,10 @@ public class TowerMover : MonoBehaviour
 
         //get reference to original color
         originalColor = GetComponent<SpriteRenderer>().color;
+
+        Debug.Log("tower prefab tag: " + towerPrefab.tag);
+
+        towerCost = currency.GetCost(towerPrefab.tag);
     }
 
     // Update is called once per frame
@@ -72,7 +73,7 @@ public class TowerMover : MonoBehaviour
     private void DetermineIfPlaceable()
     {
         Vector3Int cellPosition = grid.WorldToCell(pos);
-        Debug.Log("Cell position: " + cellPosition.ToString());
+        //Debug.Log("Cell position: " + cellPosition.ToString());
         TileBase tileBase = surface.GetTile(cellPosition);
         tile = tileBase.name;
 
@@ -88,12 +89,13 @@ public class TowerMover : MonoBehaviour
         //Debug.Log(tile);
 
         //is there enough money to buy the tower?
-        if (currency.money < towerOneCost)
+        if (currency.money < towerCost)
         {
             placeable = false;
+            Debug.Log("Not enough money to buy!");
         }
 
-        Debug.Log("pointer position y value: " + pointerPosition.y.ToString());
+        //Debug.Log("pointer position y value: " + pointerPosition.y.ToString());
 
         //makes sure tower can only be placed below a certain y-value (to avoid overlapping with top panel)
         if (pointerPosition.y >= maxPlacementYVal)
@@ -116,8 +118,13 @@ public class TowerMover : MonoBehaviour
     //tower is placed or put back (into menu)
     private void OnMouseDown()
     {
-        if (placeable)
+        DetermineIfPlaceable();
+
+        if (placeable && (currency.money >= towerCost))
         {
+            currency.Purchase(towerPrefab.tag);
+            Debug.Log("^*$%^&$%^& The tag of selected tower is: " + tag);
+
             towerLocation = new GameObject(towerPrefab.name);
             Transform towerTransform = towerLocation.transform;
             Vector3 towerPosition = towerTransform.position;

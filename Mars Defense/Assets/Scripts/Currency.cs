@@ -37,6 +37,12 @@ public class Currency : MonoBehaviour
                 money -= turboCost;
                 break;
         }
+
+        if (money < 0)
+        {
+            money = 0;
+            Debug.Log("error: negative amount of money");
+        }
     }
 
     private void Start()
@@ -50,5 +56,22 @@ public class Currency : MonoBehaviour
     private void Update()
     {
         currencyUGUI.text = "$" + money.ToString();
+    }
+
+    public int GetCost(string towerName)
+    {
+        switch (towerName)
+        {
+            case "Turbo":
+                return turboCost;
+            case "Blue":
+                return blueCost;
+            case "Shadow":
+                return shadowCost;
+            default:
+                Debug.Log("bad tag name in Currency's GetCost: " + towerName);
+                return 999999;
+                
+        }
     }
 }

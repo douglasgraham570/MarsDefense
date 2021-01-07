@@ -58,17 +58,6 @@ public class Turret : MonoBehaviour
 
     private void Awake()
     {
-
-        GameObject manager = GameObject.Find("Manager");
-        currency = manager.GetComponent<Currency>();
-
-        //what kind of tower is it attached to?
-        specificTower = transform.tag;
-        Debug.Log("the tower selected is: " + specificTower);
-
-        currency.Purchase(specificTower);
-
-
         //get reference to each potential turret head
         turretSE = transform.GetChild(1);
         turretSW = transform.GetChild(0);
