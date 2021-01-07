@@ -9,12 +9,15 @@ public class Wave
     /***********************************/
     /*            VARIABLES            */
     /***********************************/
-    public Dictionary<GameObject, int> enemyCounts;
+    public List<Transform> enemies;
+    public List<int> counts;
     public int totalEnemies = 0;
     public float spawnRate;
 
     GameObject manager;
     LevelSpawner spawner;
+
+    List<Transform> enemyOrder = new List<Transform>();
 
     /***********************************/
     /*              INIT               */
@@ -23,9 +26,9 @@ public class Wave
     void Awake()
     {
         //calculate total enemies
-        foreach (var enemy in enemyCounts)
+        foreach (var count in counts)
         {
-            totalEnemies += enemy.Value;
+            totalEnemies += count;
         }
 
         Debug.Log("Total enemies in the level: " + totalEnemies);
@@ -46,11 +49,27 @@ public class Wave
     //initialize the enemyOrder array to the desired order of enemies arriving
     private void DetermineEnemyOrder()
     {
-        throw new NotImplementedException();
+        //for every enemy selected
+        for (int i = 0; i < enemies.Capacity; i++)
+        {
+            try
+            {
+                //add one enemy for each count of that enemy
+                for (int j = 0; j < counts[i]; j++)
+                {
+                    enemyOrder.Add(enemies[i]);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.Log("counts list cannot have size less than enemies list");
+            }
+        }
     }
 
-    void SpawnNextEnemy()
+    public void SpawnNextEnemy(int enemyIndex)
     {
-        //spawner.SpawnEnemy();
+        spawner.SpawnEnemy(enemyOrder[enemyIndex]);
     }
 }

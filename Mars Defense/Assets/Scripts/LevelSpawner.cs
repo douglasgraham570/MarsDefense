@@ -7,31 +7,18 @@ public class LevelSpawner : MonoBehaviour
 {
     public Wave[] waves;
     public int EnemiesAlive = 0;
-    public int spawnNum = 0;
-    public float timeBetweenEnemies = 0.5f;
     public float timeBetweenLevels = 10f;
 
-    [SerializeField] Transform enemy1Prefab;
-    [SerializeField] Transform enemy2Prefab;
-    [SerializeField] Transform enemy3Prefab;
     [SerializeField] Transform spawnPoint;
 
     private float countdown = 2f; //when to spawn next wave
     private int waveIndex = 0;
     private bool gameStarted = false;
     private Transform currentPrefab;
-    int a, b = 5;
-
-    private void Awake()
-    {
-        //default enemy is enemy 1
-        currentPrefab = enemy1Prefab;
-    }
 
     //tells the script the game has started, and the enemies will now be spawned
     public void GameStarted()
     {
-        Debug.Log("spawner knows game started");
         gameStarted = true;
     }
 
@@ -44,8 +31,6 @@ public class LevelSpawner : MonoBehaviour
             //spawn level when countdown reaches 0
             if (countdown <= 0f)
             {
-                spawnNum += 1;
-
                 StartCoroutine(Spawn());
 
                 //reset countdown to the time between levels
@@ -64,10 +49,14 @@ public class LevelSpawner : MonoBehaviour
     {
         Wave wave = waves[waveIndex];
 
+        Debug.Log("wave total enemies: " + wave.totalEnemies + ". Should be 3");
+
+        //TODO Fix wave total enemies
         for (int i = 0; i < wave.totalEnemies ; i++) //spawn whatever enemy has been selected
         {
-            SpawnEnemy();
-            yield return new WaitForSeconds(timeBetweenEnemies);
+            //SpawnEnemy();
+            wave.SpawnNextEnemy(i);
+            yield return new WaitForSeconds(1f / wave.spawnRate);
         }
 
         waveIndex++;

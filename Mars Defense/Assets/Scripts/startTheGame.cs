@@ -13,12 +13,4 @@ public class startTheGame : MonoBehaviour
         Canvas gameStartCanvas = startGameMenu.GetComponent<Canvas>();
         gameStartCanvas.enabled = true;
     }
-
-    public void startGame()
-    {
-        Debug.Log("Starting the game");
-
-        //make the start game menu visible
-
-    }
 }
