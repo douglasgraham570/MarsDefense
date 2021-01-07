@@ -10,11 +10,11 @@ public class LevelSpawner : MonoBehaviour
     public float timeBetweenLevels = 10f;
 
     [SerializeField] Transform spawnPoint;
+    [SerializeField] EndGame end;
 
     private float countdown = 2f; //when to spawn next wave
     private int waveIndex = 0;
     private bool gameStarted = false;
-    private Transform currentPrefab;
 
     //tells the script the game has started, and the enemies will now be spawned
     public void GameStarted()
@@ -42,6 +42,7 @@ public class LevelSpawner : MonoBehaviour
             //decremet countdown relative to framerate
             countdown -= Time.deltaTime;
         }
+        
     }
 
     //spawns a wave of a certain enemy type
@@ -55,12 +56,12 @@ public class LevelSpawner : MonoBehaviour
             waveEnemies += count;
         }
 
-        Debug.Log("wave total enemies: " + waveEnemies + ". Should be 3");
+        //Debug.Log("wave total enemies: " + waveEnemies + ". Should be 3");
 
         wave.Init();
         wave.DetermineEnemyOrder();
 
-        Debug.Log("wave order: " + wave.enemyOrder.ToString());
+        //Debug.Log("wave order: " + wave.enemyOrder.ToString());
 
         //TODO Fix wave total enemies
         for (int i = 0; i < waveEnemies ; i++) //spawn whatever enemy has been selected
@@ -71,6 +72,12 @@ public class LevelSpawner : MonoBehaviour
         }
 
         waveIndex++;
+        if (waveIndex == waves.Length)
+        {
+            Debug.Log("all levels passed. Congrats!");
+            end.DisplayVictory();
+            enabled = false;
+        }
     }
 
     public void SpawnEnemy(Transform enemyPrefab)

@@ -6214,20 +6214,18 @@ MonoBehaviour:
   - enemies:
     - {fileID: 6326328661607854286, guid: ca4514d76b30b4dda8ed80737c996efd, type: 3}
     counts: 03000000
-    totalEnemies: 0
     spawnRate: 2
+    enemyOrder: []
   - enemies:
     - {fileID: 6326328661607854286, guid: ca4514d76b30b4dda8ed80737c996efd, type: 3}
     - {fileID: 6326328661607854286, guid: 8157034e602df40b0b83548044d957a8, type: 3}
     counts: 0200000001000000
-    totalEnemies: 0
     spawnRate: 2
+    enemyOrder: []
   EnemiesAlive: 0
   timeBetweenLevels: 5
-  enemy1Prefab: {fileID: 6326328661607854286, guid: ca4514d76b30b4dda8ed80737c996efd, type: 3}
-  enemy2Prefab: {fileID: 6326328661607854286, guid: 8157034e602df40b0b83548044d957a8, type: 3}
-  enemy3Prefab: {fileID: 6326328661607854286, guid: df881270a0af14a23b25edac9590b53a, type: 3}
   spawnPoint: {fileID: 1205406160}
+  end: {fileID: 1350631130}
 --- !u!114 &1350631127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6286,6 +6284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 866a96a9b525b4faf9b80ceb2a662ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverTitle: {fileID: 1708146809}
   gameOverScore: {fileID: 1086297286}
   highScore: {fileID: 1350631132}
 --- !u!114 &1350631131
